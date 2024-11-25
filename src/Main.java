@@ -17,7 +17,33 @@ public class Main {
                 int inputSizeSelection = getSize(inputRoomSelection,input);
                 int priceofRoomSize = getPriceRoom(inputRoomSelection,inputSizeSelection);
                 System.out.println("PRICE = "+ priceofRoomSize); //TEST
-                            
+                
+                //steph
+                
+                int numberofGuest = getHowManyGuest(input);
+                
+                if (inputRoomSelection==1 && inputSizeSelection == 1) {
+	    		    if (numberofGuest <= 2) {
+	    		    } else System.out.println("Too many guests for a Single Occupancy room. The maximum number of guests is 2."); 
+	        	} else if (inputRoomSelection == 1 && inputSizeSelection == 2) {
+	    		    if (numberofGuest <= 3 ) {
+	    		    } else System.out.println("Too many guests for a Double Occupancy room. The maximum number of guests is 3."); 
+	    	    } else if (inputRoomSelection == 2 && inputSizeSelection == 1) {
+	    		    if (numberofGuest <= 4 ) {
+	    		    } else System.out.println("Too many guests for a Single Occupancy room. The maximum number of guests is 4."); 
+	    	    } else if (inputRoomSelection == 2 && inputSizeSelection == 2) {
+	    		    if (numberofGuest <= 6 ) {
+	    		    } else System.out.println("Too many guests for a Double Occupancy room. The maximum number of guests is 6."); 
+	    	    } else if (inputRoomSelection == 3 && inputSizeSelection == 1) {
+	    		    if (numberofGuest <= 6 ) {
+	    		    } else System.out.println("Too many guests for a Single Occupancy room. The maximum number of guests is 6."); 
+	    	    } else if (inputRoomSelection == 3 && inputSizeSelection == 2) {
+	    		    if (numberofGuest <= 10 ) {
+	    		    } else System.out.println("Too many guests for a Double Occupancy room. The maximum number of guests is 10."); 
+	    	}
+	    	
+    	
+                
                 //izzy
                 int nightofStay = getHowManyNights(input);
 
@@ -119,9 +145,16 @@ public class Main {
         return userChoicePrice;
     }
     
+    
      private static int getHowManyNights(Scanner input) {
         System.out.println("How many nights you will be staying?");
         System.out.print("~> ");
         return input.nextInt();
+     }
+        private static int getHowManyGuest(Scanner input) {
+            System.out.println("How many guests will be staying?");
+            System.out.print("~> ");
+            return input.nextInt();
+         }
+        
     }
-}
