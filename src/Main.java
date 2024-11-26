@@ -53,6 +53,7 @@ public class Main {
                 break;
         
             case 0:
+                System.out.println("EXITING PROGRAM...");
                 System.exit(0);
             default:
                 break;
@@ -62,7 +63,6 @@ public class Main {
     private static void welcome() {
         System.out.println("WELCOME TO HOTEL DE LUNA");
     }
-    //ADDED GUEST CHARGE CALCULATION, RETURN TYPE DOUBLE
     private static double guestCharge(double totalBill){ 
         double charge = totalBill * 0.10;
         return charge;
