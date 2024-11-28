@@ -72,6 +72,7 @@ public class Main {
                 }
             } else {
                 System.out.println("INCORRECT INPUT. TRY AGAIN.");
+                input.nextLine();
             }
         }
     //            int inputRoomSelection = getRoomType(input);
