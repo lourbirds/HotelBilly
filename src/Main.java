@@ -8,26 +8,26 @@ public class Main {
         System.out.println("Would you like to Book a night or Exit?");
         System.out.println("[1] Book a night");
         System.out.println("[0] Exit");
-        System.out.print("ENTER 1 or 0: ");
-
-        if (input.hasNextInt()) {
-            int userChoice = input.nextInt();
-            switch (userChoice) {
-                case 1:
-                    displayOptions(input);
-                    break;
-                case 0:
-                    System.out.println("EXITING PROGRAM...");
-                    System.exit(0);
-                default:
-                    System.out.println("INCORRECT INPUT. TRY AGAIN.");
-                    break;
+        while (true) {
+            System.out.print("ENTER 1 or 0: ");
+            if (input.hasNextInt()) {
+                int userChoice = input.nextInt();
+                switch (userChoice) {
+                    case 1:
+                        displayOptions(input);
+                        break;
+                    case 0:
+                        System.out.println("EXITING PROGRAM...");
+                        System.exit(0);
+                    default:
+                        System.out.println("INCORRECT INPUT. TRY AGAIN.");
+                        break;
+                }
+            } else {
+                System.out.println("INCORRECT INPUT. TRY AGAIN.");
+                input.nextLine();
             }
-        } else {
-            System.out.println("INCORRECT INPUT. TRY AGAIN.");
         }
-
-        input.close();
     }
 
     private static void welcome() {
@@ -177,7 +177,7 @@ public class Main {
         total += guestAddCharge;
 
         if (nights > 3) {
-            total += (total * 0.15);
+            total -= (total * 0.15);
         }
 
         System.out.println(total);
