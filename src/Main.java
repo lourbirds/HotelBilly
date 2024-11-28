@@ -36,6 +36,7 @@ public class Main {
 
     private static void displayOptions(Scanner input) {
         int roomType = 0, roomOcc = 0, nightCount = 0, guestCount = 0;
+        float totalPrice;
         boolean finalComp = false;
         while (finalComp != true) {
             System.out.println();
@@ -61,11 +62,12 @@ public class Main {
                         System.out.println("NIGHTS----> " + nightCount);
                         break;
                     case 4:
-                        guestCount= getGuests(input);
+                        guestCount = getGuests(input);
                         System.out.println("GUESTS----> " + guestCount);
                         break;
                     case 5:
-                        finalCompute(roomType, roomOcc, nightCount, guestCount, input);
+                        totalPrice = finalCompute(roomType, roomOcc, nightCount, guestCount, input);
+                        System.out.println("TOTAL----> " + totalPrice);
                         finalComp = true;
                         break;
                     default:
@@ -130,7 +132,7 @@ public class Main {
         return guests;
     }
 
-    private static int finalCompute(int roomType, int roomSize, int nights, int guests, Scanner input) {
+    private static float finalCompute(int roomType, int roomSize, int nights, int guests, Scanner input) {
         System.out.println("ROOM TYPE----> " + roomType);
         System.out.println("ROOM SIZE----> " + roomSize);
         System.out.println("NIGHTS----> " + nights);
@@ -180,7 +182,7 @@ public class Main {
 
         System.out.println(total);
         total += (total * 0.12);
-        return 0;
+        return total;
     }
         
 }
