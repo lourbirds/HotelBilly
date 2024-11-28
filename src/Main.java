@@ -38,6 +38,7 @@ public class Main {
         int roomType = 0, roomOcc = 0, nightCount = 0, guestCount = 0;
         boolean finalComp = false;
         while (finalComp != true) {
+            System.out.println();
             System.out.println("[1] Select Room Type");
             System.out.println("[2] Select Room Size");
             System.out.println("[3] Select Number of Nights");
@@ -48,27 +49,22 @@ public class Main {
                 int userChoice = input.nextInt();
                 switch (userChoice) {
                     case 1:
-                        System.out.println("ROOM TYPE...");
                         roomType = getRoomType(input);
                         System.out.println("ROOM TYPE----> " + roomType);
                         break;
                     case 2:
-                        System.out.println("ROOM OCCUPANCY...");
                         roomOcc = getRoomOcc(input);
                         System.out.println("ROOM OCCUPANCY----> " + roomOcc);
                         break;
                     case 3:
-                        System.out.println("COUNTING NIGHTS...");
                         nightCount = getNights(input);
                         System.out.println("NIGHTS----> " + nightCount);
                         break;
                     case 4:
-                        System.out.println("COUNTING GUESTS...");
                         guestCount= getGuests(input);
                         System.out.println("GUESTS----> " + guestCount);
                         break;
                     case 5:
-                        System.out.println("CALCULATING...");
                         finalCompute(roomType, roomOcc, nightCount, guestCount, input);
                         finalComp = true;
                         break;
@@ -85,7 +81,7 @@ public class Main {
     }
 
     private static int getRoomType(Scanner input){
-        System.out.println("Select your Room Type");
+        System.out.println("\nSelect your Room Type");
         System.out.println("[1] Standard (1800.00 for Single Occupancy OR 2700.00 for Double Occupancy)");
         System.out.println("[2] Deluxe (2300.00 for Single Occupancy OR 3200.00 for Double Occupancy)");
         System.out.println("[3] Suite (3000.00 for Single Occupancy OR 4000.00 for Double Occupancy)");
@@ -104,7 +100,7 @@ public class Main {
     }
 
     private static int getRoomOcc(Scanner input){
-        System.out.println("Select your Room Occupancy");
+        System.out.println("\nSelect your Room Occupancy");
         System.out.println("[1] (Can Support 2, 4, or 6 guests)");
         System.out.println("[2] (Can support 3, 6, or 10 guests. Additional 900 per night.)");
         System.out.print("ENTER a number between 1 to 2: ");
@@ -120,7 +116,7 @@ public class Main {
     }
 
     private static int getNights(Scanner input) {
-        System.out.println("How many nights will you be staying?");
+        System.out.println("\nHow many nights will you be staying?");
         System.out.println("(15% discount is offered at checkout if you stay for more than 3 nights!)");
         System.out.print("ENTER a number: ");
         int nights = input.nextInt();
@@ -128,32 +124,62 @@ public class Main {
     }
 
     private static int getGuests(Scanner input) {
-        System.out.println("How many guests will be staying?");
+        System.out.println("\nHow many guests will be staying?");
         System.out.print("ENTER a number: ");
         int guests = input.nextInt();
         return guests;
     }
 
     private static int finalCompute(int roomType, int roomSize, int nights, int guests, Scanner input) {
-        if (roomType == 1 && guests <= 2 && roomSize == 1) {
-            
-        } else if (roomType == 1 && guests <= 3 && roomSize == 2) {
-
-        } else if (roomType == 2 && guests <= 4 & roomSize == 1) {
-
-        } else if (roomType == 2 && guests <= 6 & roomSize == 2) {
-
-        } else if (roomType == 3 && guests <= 6 & roomSize == 1) {
-
-        } else if (roomType == 3 && guests <= 10 & roomSize == 2) {
-
+        System.out.println("ROOM TYPE----> " + roomType);
+        System.out.println("ROOM SIZE----> " + roomSize);
+        System.out.println("NIGHTS----> " + nights);
+        System.out.println("GUESTS----> " + guests);
+        int roomBasePrice = 0, guestAddCharge = 0;
+        float total;
+        switch (roomType) {
+            case 1:
+                if (roomSize == 1) {
+                    roomBasePrice = 1800;
+                } else if (roomSize == 2) {
+                    roomBasePrice = 2700;
+                }
+                break;
+            case 2:
+                if (roomSize == 1) {
+                    roomBasePrice = 2300;
+                } else if (roomSize == 2) {
+                    roomBasePrice = 3200;
+                }
+                break;
+            case 3:
+                if (roomSize == 1) {
+                    roomBasePrice = 3000;
+                } else if (roomSize == 2) {
+                    roomBasePrice = 4000;
+                }
+                break;
+            default:
+                    roomBasePrice = 4000;
+                break;
         }
+
+        total = roomBasePrice * nights;
+
+        if (roomSize == 1) {
+            guestAddCharge = (guests - 1) * (int)(roomBasePrice * 0.10);
+        } else if (roomSize == 2 && guests > 1) {
+            guestAddCharge = (guests - 2) * (int)(roomBasePrice * 0.10);
+        }
+
+        total += guestAddCharge;
 
         if (nights > 3) {
-            
+            total += (total * 0.15);
         }
 
-        final int taxRate = 12;
+        System.out.println(total);
+        total += (total * 0.12);
         return 0;
     }
         
