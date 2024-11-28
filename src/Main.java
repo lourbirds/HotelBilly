@@ -5,10 +5,10 @@ public class Main {
         Scanner input = new Scanner(System.in);
 
         welcome();
-        System.out.println("Would you like to Book a night or Exit?");
-        System.out.println("[1] Book a night");
-        System.out.println("[0] Exit");
         while (true) {
+            System.out.println("Would you like to Book a night or Exit?");
+            System.out.println("[1] Book a night");
+            System.out.println("[0] Exit");
             System.out.print("ENTER 1 or 0: ");
             if (input.hasNextInt()) {
                 int userChoice = input.nextInt();
