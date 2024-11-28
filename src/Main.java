@@ -33,6 +33,7 @@ public class Main {
     private static void welcome() {
         System.out.println("WELCOME TO HOTEL DE LUNA");
     }
+
     private static void displayOptions(Scanner input) {
         int roomType = 0, roomOcc = 0, nightCount = 0, guestCount = 0;
         boolean finalComp = false;
@@ -82,10 +83,12 @@ public class Main {
         }
     	
     }
+
     private static double guestCharge(double totalBill){ 
         double charge = totalBill * 0.10;
         return charge;
    }
+
     private static int getRoomType(Scanner input){
         System.out.println("Select your Room Type");
         System.out.println("[1] Standard (1800.00 for Single Occupancy OR 2700.00 for Double Occupancy)");
@@ -104,6 +107,7 @@ public class Main {
                 return 0;
         }
     }
+
     private static int getRoomOcc(Scanner input){
         System.out.println("Select your Room Occupancy");
         System.out.println("[1] (Can Support 2, 4, or 6 guests)");
@@ -119,6 +123,7 @@ public class Main {
                 return 0;
         }
     }
+
     private static int getPriceRoom(int getRoomType, int userSizeChoice){
         int userChoicePrice = 0;
         int singleOccupancy , doubleOccupancy;
@@ -171,14 +176,14 @@ public class Main {
         return userChoicePrice;
     }
     
-    
     private static int getNights(Scanner input) {
         System.out.println("How many nights will you be staying?");
         System.out.println("(15% discount is offered at checkout if you stay for more than 3 nights!)");
         System.out.print("ENTER a number: ");
         int nights = input.nextInt();
         return nights;
-     }
+    }
+
     private static int getGuests(Scanner input) {
         System.out.println("How many guests will be staying?");
         System.out.print("ENTER a number: ");
