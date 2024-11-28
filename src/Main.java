@@ -55,17 +55,17 @@ public class Main {
                         System.out.println("ROOM OCCUPANCY...");
                         roomOcc = getRoomOcc(input);
                         System.out.println("ROOM OCCUPANCY----> " + roomOcc);
-                        System.exit(0);
+                        break;
                     case 3:
                         System.out.println("COUNTING NIGHTS...");
                         nightCount = getNights(input);
                         System.out.println("NIGHTS----> " + nightCount);
-                        System.exit(0);
+                        break;
                     case 4:
                         System.out.println("COUNTING GUESTS...");
                         guestCount= getGuests(input);
                         System.out.println("GUESTS----> " + guestCount);
-                        System.exit(0);
+                        break;
                     case 5:
                         System.out.println("CALCULATING...");
                         finalCompute(roomType, roomOcc, nightCount, guestCount, input);
@@ -80,44 +80,7 @@ public class Main {
                 input.nextLine();
             }
         }
-    //            int inputRoomSelection = getRoomType(input);
-    //            int inputSizeSelection = getSize(inputRoomSelection,input);
-    //            int priceofRoomSize = getPriceRoom(inputRoomSelection,inputSizeSelection);
-    //            System.out.println("PRICE = "+ priceofRoomSize); //TEST
-
-    //            //steph
-
-    //            int numberofGuest = getHowManyGuest(input);
-
-    //            if (inputRoomSelection==1 && inputSizeSelection == 1) {
-	// 	       if (numberofGuest <= 2) {
-	// 	       } else System.out.println("Too many guests for a Single Occupancy room. The maximum number of guests is 2."); 
-    //  	} else if (inputRoomSelection == 1 && inputSizeSelection == 2) {
-	// 	       if (numberofGuest <= 3 ) {
-	// 	       } else System.out.println("Too many guests for a Double Occupancy room. The maximum number of guests is 3."); 
-	//       } else if (inputRoomSelection == 2 && inputSizeSelection == 1) {
-	// 	       if (numberofGuest <= 4 ) {
-	// 	       } else System.out.println("Too many guests for a Single Occupancy room. The maximum number of guests is 4."); 
-	//       } else if (inputRoomSelection == 2 && inputSizeSelection == 2) {
-	// 	       if (numberofGuest <= 6 ) {
-	// 	       } else System.out.println("Too many guests for a Double Occupancy room. The maximum number of guests is 6."); 
-	//       } else if (inputRoomSelection == 3 && inputSizeSelection == 1) {
-	// 	       if (numberofGuest <= 6 ) {
-	// 	       } else System.out.println("Too many guests for a Single Occupancy room. The maximum number of guests is 6."); 
-	//       } else if (inputRoomSelection == 3 && inputSizeSelection == 2) {
-	// 	       if (numberofGuest <= 10 ) {
-	// 	       } else System.out.println("Too many guests for a Double Occupancy room. The maximum number of guests is 10."); 
-	// }
-	
     	
-
-    //            //izzy
-    //            int nightofStay = getHowManyNights(input);
-
-    //            int totalPrice = priceofRoomSize * nightofStay;
-
-    //            System.out.println("Total cost: " + totalPrice);
-   
     }
     private static double guestCharge(double totalBill){ 
         double charge = totalBill * 0.10;
@@ -227,6 +190,7 @@ public class Main {
         if (nights > 3) {
             
         }
+        final int taxRate = 12;
         return 0;
     }
         
