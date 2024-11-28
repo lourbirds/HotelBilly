@@ -34,38 +34,45 @@ public class Main {
         System.out.println("WELCOME TO HOTEL DE LUNA");
     }
     private static void displayOptions(Scanner input) {
-        int roomType, roomOcc, nightCount, guestCount;
-        System.out.println("[1] Select Room Type");
-        System.out.println("[2] Select Room Size");
-        System.out.println("[3] Select Number of Nights");
-        System.out.println("[4] Select Number of Guests");
-        System.out.println("[5] Calculate Total Bill");
-        System.out.print("ENTER a number between 1 to 5: ");
-        if (input.hasNextInt()) {
-            int userChoice = input.nextInt();
-            switch (userChoice) {
-                case 1:
-                    System.out.println("ROOM TYPE...");
-                    roomType = getRoomType(input);
-                    break;
-                case 2:
-                    System.out.println("ROOM OCCUPANCY...");
-                    System.exit(0);
-                case 3:
-                    System.out.println("COUNTING NIGHTS...");
-                    System.exit(0);
-                case 4:
-                    System.out.println("COUNTING GUESTS...");
-                    System.exit(0);
-                case 5:
-                    System.out.println("CALCULATING...");
-                    System.exit(0);
-                default:
-                    System.out.println("INCORRECT INPUT. TRY AGAIN.");
-                    break;
+        int roomType = 0, roomOcc = 0, nightCount = 0, guestCount = 0;
+        boolean finalComp = false;
+        while (finalComp != true) {
+            System.out.println("[1] Select Room Type");
+            System.out.println("[2] Select Room Size");
+            System.out.println("[3] Select Number of Nights");
+            System.out.println("[4] Select Number of Guests");
+            System.out.println("[5] Calculate Total Bill");
+            System.out.print("ENTER a number between 1 to 5: ");
+            if (input.hasNextInt()) {
+                int userChoice = input.nextInt();
+                switch (userChoice) {
+                    case 1:
+                        System.out.println("ROOM TYPE...");
+                        roomType = getRoomType(input);
+                        System.out.println("ROOM TYPE----> " + roomType);
+                        break;
+                    case 2:
+                        System.out.println("ROOM OCCUPANCY...");
+                        roomOcc = getRoomOcc(input);
+                        System.out.println("ROOM OCCUPANCY----> " + roomOcc);
+                        System.exit(0);
+                    case 3:
+                        System.out.println("COUNTING NIGHTS...");
+                        System.exit(0);
+                    case 4:
+                        System.out.println("COUNTING GUESTS...");
+                        System.exit(0);
+                    case 5:
+                        System.out.println("CALCULATING...");
+                        finalComp = true;
+                        break;
+                    default:
+                        System.out.println("INCORRECT INPUT. TRY AGAIN.");
+                        break;
+                }
+            } else {
+                System.out.println("INCORRECT INPUT. TRY AGAIN.");
             }
-        } else {
-            System.out.println("INCORRECT INPUT. TRY AGAIN.");
         }
     //            int inputRoomSelection = getRoomType(input);
     //            int inputSizeSelection = getSize(inputRoomSelection,input);
@@ -128,25 +135,20 @@ public class Main {
                 return 0;
         }
     }
-    private static int getSize(int roomType, Scanner input){
-        switch (roomType) {
+    private static int getRoomOcc(Scanner input){
+        System.out.println("Select your Room Occupancy");
+        System.out.println("[1] (Can Support 2, 4, or 6 guests)");
+        System.out.println("[2] (Can support 3, 6, or 10 guests. Additional 900 per night.)");
+        System.out.print("ENTER a number between 1 to 2: ");
+        int roomSelection = input.nextInt();
+        switch (roomSelection) {
             case 1:
-                System.out.println("Select Size");
-                System.out.print("[1] Single (1800.00) \n[2] Double (2700.00)\n");
-                break;
+                return 1;
             case 2:
-                System.out.println("Select Size");
-                System.out.print("[1] Single (2300.00) \n[2] Double (3200.00)\n");
-                break;
-            case 3:
-                System.out.println("Select Size");
-                System.out.print("[1] Single (3000.00) \n[2] Double (4000.00)\n");
-                break;
+                return 2;
             default:
-                break;
+                return 0;
         }
-        System.out.print("~> ");
-        return input.nextInt();
     }
     private static int getPriceRoom(int getRoomType, int userSizeChoice){
         int userChoicePrice = 0;
