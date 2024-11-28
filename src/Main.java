@@ -211,6 +211,7 @@ public class Main {
     
     private static int getNights(Scanner input) {
         System.out.println("How many nights will you be staying?");
+        System.out.println("(15% discount is offered at checkout if you stay for more than 3 nights!)");
         System.out.print("ENTER a number: ");
         int nights = input.nextInt();
         return nights;
@@ -223,6 +224,9 @@ public class Main {
     }
 
     private static int finalCompute(int roomType, int roomSize, int nights, int guests, Scanner input) {
+        if (nights > 3) {
+            
+        }
         return 0;
     }
         
