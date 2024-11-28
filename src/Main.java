@@ -84,11 +84,6 @@ public class Main {
     	
     }
 
-    private static double guestCharge(double totalBill){ 
-        double charge = totalBill * 0.10;
-        return charge;
-   }
-
     private static int getRoomType(Scanner input){
         System.out.println("Select your Room Type");
         System.out.println("[1] Standard (1800.00 for Single Occupancy OR 2700.00 for Double Occupancy)");
@@ -124,58 +119,6 @@ public class Main {
         }
     }
 
-    private static int getPriceRoom(int getRoomType, int userSizeChoice){
-        int userChoicePrice = 0;
-        int singleOccupancy , doubleOccupancy;
-        switch (getRoomType){
-            case 1://STANDARD
-                singleOccupancy = 1800;
-                doubleOccupancy = 2700;
-                switch (userSizeChoice) {
-                    case 1:
-                        userChoicePrice = singleOccupancy;
-                        break;
-                    case 2:
-                        userChoicePrice = doubleOccupancy;
-                        break;
-                    default:
-                        break;
-                }
-                break;
-            case 2://DELUXE
-                singleOccupancy = 2300;
-                doubleOccupancy = 3200;
-                switch (userSizeChoice) {
-                    case 1:
-                        userChoicePrice = singleOccupancy;
-                        break;
-                    case 2:
-                        userChoicePrice = doubleOccupancy;
-                        break;
-                    default:
-                        break;
-            }
-                break;
-            case 3://SUITE
-                singleOccupancy = 3000;
-                doubleOccupancy = 4000;
-                switch (userSizeChoice) {
-                    case 1:
-                        userChoicePrice = singleOccupancy;
-                        break;
-                    case 2:
-                        userChoicePrice = doubleOccupancy;
-                        break;
-                    default:
-                        break;
-                }
-                break;
-            default:
-                break;
-        }
-        return userChoicePrice;
-    }
-    
     private static int getNights(Scanner input) {
         System.out.println("How many nights will you be staying?");
         System.out.println("(15% discount is offered at checkout if you stay for more than 3 nights!)");
@@ -192,9 +135,24 @@ public class Main {
     }
 
     private static int finalCompute(int roomType, int roomSize, int nights, int guests, Scanner input) {
+        if (roomType == 1 && guests <= 2 && roomSize == 1) {
+            
+        } else if (roomType == 1 && guests <= 3 && roomSize == 2) {
+
+        } else if (roomType == 2 && guests <= 4 & roomSize == 1) {
+
+        } else if (roomType == 2 && guests <= 6 & roomSize == 2) {
+
+        } else if (roomType == 3 && guests <= 6 & roomSize == 1) {
+
+        } else if (roomType == 3 && guests <= 10 & roomSize == 2) {
+
+        }
+
         if (nights > 3) {
             
         }
+
         final int taxRate = 12;
         return 0;
     }
