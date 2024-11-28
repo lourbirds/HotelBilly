@@ -6,7 +6,7 @@ public class Main {
 
         welcome();
         while (true) {
-            System.out.println("Would you like to Book a night or Exit?");
+            System.out.println("\nWould you like to Book a night or Exit?");
             System.out.println("[1] Book a night");
             System.out.println("[0] Exit");
             System.out.print("ENTER 1 or 0: ");
@@ -51,23 +51,18 @@ public class Main {
                 switch (userChoice) {
                     case 1:
                         roomType = getRoomType(input);
-                        System.out.println("ROOM TYPE----> " + roomType);
                         break;
                     case 2:
                         roomOcc = getRoomOcc(input);
-                        System.out.println("ROOM OCCUPANCY----> " + roomOcc);
                         break;
                     case 3:
                         guestCount = getGuests(input);
-                        System.out.println("GUESTS----> " + guestCount);
                         break;
                     case 4:
                         nightCount = getNights(input);
-                        System.out.println("NIGHTS----> " + nightCount);
                         break;
                     case 5:
                         totalPrice = finalCompute(roomType, roomOcc, nightCount, guestCount, input);
-                        System.out.println("TOTAL----> " + totalPrice);
                         finalComp = true;
                         break;
                     default:
