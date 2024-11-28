@@ -58,12 +58,17 @@ public class Main {
                         System.exit(0);
                     case 3:
                         System.out.println("COUNTING NIGHTS...");
+                        nightCount = getNights(input);
+                        System.out.println("NIGHTS----> " + nightCount);
                         System.exit(0);
                     case 4:
                         System.out.println("COUNTING GUESTS...");
+                        guestCount= getGuests(input);
+                        System.out.println("GUESTS----> " + guestCount);
                         System.exit(0);
                     case 5:
                         System.out.println("CALCULATING...");
+                        finalCompute(roomType, roomOcc, nightCount, guestCount, input);
                         finalComp = true;
                         break;
                     default:
@@ -204,15 +209,21 @@ public class Main {
     }
     
     
-     private static int getHowManyNights(Scanner input) {
-        System.out.println("How many nights you will be staying?");
-        System.out.print("~> ");
-        return input.nextInt();
+    private static int getNights(Scanner input) {
+        System.out.println("How many nights will you be staying?");
+        System.out.print("ENTER a number: ");
+        int nights = input.nextInt();
+        return nights;
      }
-        private static int getHowManyGuest(Scanner input) {
-            System.out.println("How many guests will be staying?");
-            System.out.print("~> ");
-            return input.nextInt();
-         }
-        
+    private static int getGuests(Scanner input) {
+        System.out.println("How many guests will be staying?");
+        System.out.print("ENTER a number: ");
+        int guests = input.nextInt();
+        return guests;
     }
+
+    private static int finalCompute(int roomType, int roomSize, int nights, int guests, Scanner input) {
+        return 0;
+    }
+        
+}
