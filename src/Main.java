@@ -42,8 +42,8 @@ public class Main {
             System.out.println();
             System.out.println("[1] Select Room Type");
             System.out.println("[2] Select Room Size");
-            System.out.println("[3] Select Number of Nights");
-            System.out.println("[4] Select Number of Guests");
+            System.out.println("[3] Select Number of Guests");
+            System.out.println("[4] Select Number of Nights");
             System.out.println("[5] Calculate Total Bill");
             System.out.print("ENTER a number between 1 to 5: ");
             if (input.hasNextInt()) {
@@ -58,12 +58,12 @@ public class Main {
                         System.out.println("ROOM OCCUPANCY----> " + roomOcc);
                         break;
                     case 3:
-                        nightCount = getNights(input);
-                        System.out.println("NIGHTS----> " + nightCount);
-                        break;
-                    case 4:
                         guestCount = getGuests(input);
                         System.out.println("GUESTS----> " + guestCount);
+                        break;
+                    case 4:
+                        nightCount = getNights(input);
+                        System.out.println("NIGHTS----> " + nightCount);
                         break;
                     case 5:
                         totalPrice = finalCompute(roomType, roomOcc, nightCount, guestCount, input);
@@ -135,10 +135,10 @@ public class Main {
     private static float finalCompute(int roomType, int roomSize, int nights, int guests, Scanner input) {
         System.out.println("ROOM TYPE----> " + roomType);
         System.out.println("ROOM SIZE----> " + roomSize);
-        System.out.println("NIGHTS----> " + nights);
         System.out.println("GUESTS----> " + guests);
+        System.out.println("NIGHTS----> " + nights);
         int roomBasePrice = 0, guestAddCharge = 0;
-        float total;
+        float total = 0;
         switch (roomType) {
             case 1:
                 if (roomSize == 1) {
@@ -166,22 +166,22 @@ public class Main {
                 break;
         }
 
-        total = roomBasePrice * nights;
-
         if (roomSize == 1) {
             guestAddCharge = (guests - 1) * (int)(roomBasePrice * 0.10);
         } else if (roomSize == 2 && guests > 1) {
             guestAddCharge = (guests - 2) * (int)(roomBasePrice * 0.10);
         }
 
-        total += guestAddCharge;
+        roomBasePrice += guestAddCharge;
+
+        total = roomBasePrice * nights;
 
         if (nights > 3) {
             total -= (total * 0.15);
         }
 
-        System.out.println(total);
         total += (total * 0.12);
+
         return total;
     }
         
