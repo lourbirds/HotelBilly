@@ -108,15 +108,22 @@ public class Main {
         System.out.println("\nSelect your Room Occupancy");
         System.out.println("[1] (Can Support 2, 4, or 6 guests)");
         System.out.println("[2] (Can support 3, 6, or 10 guests. Additional 900 per night.)");
-        System.out.print("ENTER a number between 1 to 2: ");
-        int roomSelection = input.nextInt();
-        switch (roomSelection) {
-            case 1:
-                return 1;
-            case 2:
-                return 2;
-            default:
-                return 0;
+        System.out.println("[0] Go back");
+        while (true) {
+            System.out.print("ENTER a number between 1 to 2: ");
+            if (input.hasNextInt()) {
+                int roomSelection = input.nextInt();
+                if (roomSelection == 0) {
+                    return 0;
+                } else if (roomSelection > 0 || roomSelection < 3) {
+                    return roomSelection;
+                } else {
+                    System.out.println("INCORRECT INPUT. TRY AGAIN.");
+                }
+            } else {
+                System.out.println("INCORRECT INPUT. TRY AGAIN.");
+                input.next();
+            }
         }
     }
 
