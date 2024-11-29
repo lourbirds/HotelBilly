@@ -25,7 +25,7 @@ public class Main {
                 }
             } else {
                 System.out.println("INCORRECT INPUT. TRY AGAIN.");
-                input.nextLine();
+                input.next();
             }
         }
     }
@@ -39,12 +39,12 @@ public class Main {
         float totalPrice;
         boolean finalComp = false;
         while (finalComp != true) {
-            System.out.println();
-            System.out.println("[1] Select Room Type");
+            System.out.println("\n[1] Select Room Type");
             System.out.println("[2] Select Room Size");
             System.out.println("[3] Select Number of Guests");
             System.out.println("[4] Select Number of Nights");
-            System.out.println("[5] Calculate Total Bill");
+            System.out.println("[5] CHECKOUT");
+            System.out.println("[0] Exit");
             System.out.print("ENTER a number between 1 to 5: ");
             if (input.hasNextInt()) {
                 int userChoice = input.nextInt();
@@ -65,13 +65,16 @@ public class Main {
                         totalPrice = finalCompute(roomType, roomOcc, nightCount, guestCount, input);
                         finalComp = true;
                         break;
+                    case 0:
+                        System.out.println("EXITING PROGRAM...");
+                        System.exit(0);
                     default:
                         System.out.println("INCORRECT INPUT. TRY AGAIN.");
                         break;
                 }
             } else {
                 System.out.println("INCORRECT INPUT. TRY AGAIN.");
-                input.nextLine();
+                input.next();
             }
         }
     	
@@ -82,17 +85,22 @@ public class Main {
         System.out.println("[1] Standard (1800.00 for Single Occupancy OR 2700.00 for Double Occupancy)");
         System.out.println("[2] Deluxe (2300.00 for Single Occupancy OR 3200.00 for Double Occupancy)");
         System.out.println("[3] Suite (3000.00 for Single Occupancy OR 4000.00 for Double Occupancy)");
-        System.out.print("ENTER a number between 1 to 3: ");
-        int roomSelection = input.nextInt();
-        switch (roomSelection) {
-            case 1:
-                return 1;
-            case 2:
-                return 2;
-            case 3:
-                return 3;
-            default:
-                return 0;
+        System.out.println("[0] Go back");
+        while (true) {
+            System.out.print("ENTER a number between 1 to 3: ");
+            if (input.hasNextInt()) {
+                int roomSelection = input.nextInt();
+                if (roomSelection == 0) {
+                    return 0;
+                } else if (roomSelection > 0 || roomSelection < 4) {
+                    return roomSelection;
+                } else {
+                    System.out.println("INCORRECT INPUT. TRY AGAIN.");
+                }
+            } else {
+                System.out.println("INCORRECT INPUT. TRY AGAIN.");
+                input.next();
+            }
         }
     }
 
