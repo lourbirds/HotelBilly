@@ -62,7 +62,10 @@ public class Main {
                         nightCount = getNights(input);
                         break;
                     case 5:
+                        checkRoomCompatibility();
                         totalPrice = finalCompute(roomType, roomOcc, nightCount, guestCount, input);
+                        userInfo();
+                        receipt();
                         finalComp = true;
                         break;
                     case 0:
@@ -165,10 +168,6 @@ public class Main {
     }
 
     private static float finalCompute(int roomType, int roomSize, int nights, int guests, Scanner input) {
-        System.out.println("ROOM TYPE----> " + roomType);
-        System.out.println("ROOM SIZE----> " + roomSize);
-        System.out.println("GUESTS----> " + guests);
-        System.out.println("NIGHTS----> " + nights);
         int roomBasePrice = 0, guestAddCharge = 0;
         float total = 0;
         switch (roomType) {
@@ -215,6 +214,18 @@ public class Main {
         total += (total * 0.12);
 
         return total;
+    }
+
+    private static void checkRoomCompatibility() {
+
+    }
+
+    private static void userInfo() {
+
+    }
+
+    private static void receipt() {
+
     }
         
 }
