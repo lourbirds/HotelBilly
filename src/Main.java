@@ -62,13 +62,18 @@ public class Main {
                     case 4:
                         nightCount = getNights(input);
                         break;
+                    case 5:
+                        displaySelection(roomType, roomOcc, nightCount, guestCount, input);
+                        break;
                     case 6:
-                        totalPrice = finalCompute(roomType, roomOcc, nightCount, guestCount, input);
-                        // Wanted to use a String List or a Class to hold multiple values but too risky.
-                        // TODO: Ask if it is okay to use Classes.
-                        checkout(roomType, roomOcc, nightCount, guestCount, input);
-                        finalComp = true;
-                        System.out.println(totalPrice);
+                        if (roomType == 0 || roomOcc == 0 || nightCount == 0 || guestCount == 0) {
+                            System.out.println("You have inputted all values for your Room Stay");
+                        } else {
+                            totalPrice = finalCompute(roomType, roomOcc, nightCount, guestCount, input);
+                            checkout(roomType, roomOcc, nightCount, guestCount, input);
+                            finalComp = true;
+                            System.out.println(totalPrice);
+                        }
                         break;
                     case 0:
                         System.out.println("EXITING PROGRAM...");
@@ -97,7 +102,7 @@ public class Main {
                 int roomSelection = input.nextInt();
                 if (roomSelection == 0) {
                     return 0;
-                } else if (roomSelection > 0 || roomSelection < 4) {
+                } else if (roomSelection > 0 && roomSelection < 4) {
                     return roomSelection;
                 } else {
                     System.out.println("INCORRECT INPUT. TRY AGAIN.");
@@ -120,7 +125,7 @@ public class Main {
                 int roomSelection = input.nextInt();
                 if (roomSelection == 0) {
                     return 0;
-                } else if (roomSelection > 0 || roomSelection < 3) {
+                } else if (roomSelection > 0 && roomSelection < 3) {
                     return roomSelection;
                 } else {
                     System.out.println("INCORRECT INPUT. TRY AGAIN.");
@@ -237,6 +242,40 @@ public class Main {
         return total;
     }
 
+    private static void displaySelection(int roomType, int roomSize, int nights, int guests, Scanner input) {
+        String roomTypeName, roomSizeName;
+        switch (roomType) {
+            case 1:
+                roomTypeName = "Standard";
+                break;
+            case 2:
+                roomTypeName = "Deluxe";
+                break;
+            case 3:
+                roomTypeName = "Suite";
+                break;
+            default:
+                roomTypeName = "";
+                break;
+        }
+        switch (roomType) {
+            case 1:
+                roomSizeName = "Single Occupancy";
+                break;
+            case 2:
+                roomSizeName = "Double Occupancy";
+                break;
+            default:
+                roomSizeName = "";
+                break;
+        }
+        System.out.println("\nROOM TYPE: " + roomTypeName);
+        System.out.println("OCCUPANCY SIZE: " + roomSizeName);
+        System.out.println("NUMBER OF NIGHTS: " + nights);
+        System.out.println("GUESTS: " + guests);
+    }
+
+    // TODO
     private static void checkout(int roomType, int roomSize, int nights, int guests, Scanner input) {
         System.out.println("Please input your information to proceed to checkout");
         System.out.println("Enter your Name: ");
