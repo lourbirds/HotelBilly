@@ -309,11 +309,24 @@ public class Main {
 
         System.out.println("\n==========================================");
         System.out.printf("To be paid by: %s (%d)\n", name, age);
-        System.out.println("Contact No.: " + name);
-        System.out.println("Email: " + name);
+        System.out.println("Contact No.: " + contact);
+        System.out.println("Email: " + email);
         System.out.println("TOTAL BILL: " + totalPrice);
         
-        // TODO
-        System.out.println("\nProceed? (y/n)");
+        while (true) {
+            System.out.print("\nProceed? (y/n): ");
+            char proceed = input.next().charAt(0);
+            switch (proceed) {
+                case 'y':
+                    System.out.println("You have booked your stay at HOTEL DE LUNA!");
+                    return;
+                case 'n':
+                    System.out.println("Going back to menu...");
+                    return;
+                default:
+                    System.out.println("INCORRECT INPUT. TRY AGAIN");
+                    break;
+            }
+        }
     }
 }
