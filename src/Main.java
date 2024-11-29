@@ -129,17 +129,39 @@ public class Main {
 
     private static int getGuests(Scanner input) {
         System.out.println("\nHow many guests will be staying?");
-        System.out.print("ENTER a number: ");
-        int guests = input.nextInt();
-        return guests;
+        while (true) {
+            System.out.print("ENTER a number (0 to Go back): ");
+            if (input.hasNextInt()) {
+                int guests = input.nextInt();
+                if (guests == 0) {
+                    return 0;
+                } else {
+                    return guests;
+                }
+            } else {
+                System.out.println("INCORRECT INPUT. TRY AGAIN.");
+                input.next();
+            }
+        }
     }
 
     private static int getNights(Scanner input) {
         System.out.println("\nHow many nights will you be staying?");
         System.out.println("(15% discount is offered at checkout if you stay for more than 3 nights!)");
-        System.out.print("ENTER a number: ");
-        int nights = input.nextInt();
-        return nights;
+        while (true) {
+            System.out.print("ENTER a number (0 to Go back): ");
+            if (input.hasNextInt()) {
+                int nights = input.nextInt();
+                if (nights == 0) {
+                    return 0;
+                } else {
+                    return nights;
+                }
+            } else {
+                System.out.println("INCORRECT INPUT. TRY AGAIN.");
+                input.next();
+            }
+        }
     }
 
     private static float finalCompute(int roomType, int roomSize, int nights, int guests, Scanner input) {
