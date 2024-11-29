@@ -12,7 +12,7 @@ To use this program, ensure you have any version of supported Java installed on 
 
 You can install java from [Adoptimum](https://adoptium.net/installation/). 
 
-#### Installing HotelBilly
+#### Installing and Executing HotelBilly
 
 **WINDOWS**
 
@@ -45,7 +45,7 @@ Enter the extracted directory and then enter the src directory.
 In the Terminal app, type this:
 
 ```powershell
-java Main.java
+java HotelBilly.java
 ```
 
 4. Enjoy!
@@ -69,24 +69,56 @@ cd HotelBilly/src
 3. Run the java program
 
 ```bash
-java Main.java
+java HotelBilly.java
 ```
-
-### Input Parameters
-
-The program takes not argument parameters. You only need to run the program.
-
-### Execution
 
 ## CODE STRCUTURE
 
 ### Modules
 
+- Main Class: HotelBilly
+
+    - Handles user input
+
+    - Comutes the total bill
+
+    - Appplies discount and additional charges
+
 ### Program Flow
 
 ## EXAMPLES
 
+### Basic Example
+
+- Room Type: Standard
+
+- Occupancy Size: Single
+
+- Number of Nights: 2
+
+- Number of Guests: 1
+
+Output: Total Bill = (1800 * 2) + 12% VAT
+
+### Advanced Example
+
+- Room Type: Suite
+
+- Occupancy Size: Double
+
+- Number of Nights: 5
+
+- Number of Guests: 8
+
+Output: Total Bill = (1800 * 5) + (10% * 8 * 4000) - 15% discount + 12% VAT
+
 ## ERROR HANDLING
+
+- INCORRECT INPUT: If the user inputs invalid data (e.g., text where a number is expected), the program prompts the user to re-enter the information.
+
+- GUEST LIMIT EXCEEDED: If the number of guests exceeds the room's capacity, the program notifies the user and requests correct input.
+
+- MISSING DATA: If the values needed to get the total bill computation is incomplete.
 
 ## LIMITATIONS AND KNOWN ISSUES
 

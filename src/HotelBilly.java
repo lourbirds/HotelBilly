@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class Main {
+public class HotelBilly {
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
 
@@ -66,7 +66,7 @@ public class Main {
                         break;
                     case 6:
                         if (roomType == 0 || roomOcc == 0 || nightCount == 0 || guestCount == 0) {
-                            System.out.println("You have not inputted all values for your Room Stay");
+                            System.out.println("MISSING DATA: You have not inputted all values for your Room Stay");
                         } else {
                             checkout(roomType, roomOcc, nightCount, guestCount, input);
                             finalComp = true;
@@ -162,7 +162,7 @@ public class Main {
                 } else if (guests <= maxGuests) {
                     return guests;
                 } else {
-                    System.out.println("Guest number is incompatible with Room Type and Occupancy Size");
+                    System.out.println("GUEST LIMIT EXCEEDED: Guest number is incompatible with Room Type and Occupancy Size");
                 }
             } else {
                 System.out.println("INCORRECT INPUT. TRY AGAIN.");
