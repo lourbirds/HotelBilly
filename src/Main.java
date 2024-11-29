@@ -45,7 +45,7 @@ public class Main {
             System.out.println("[5] Display Current Selection");
             System.out.println("[6] CHECKOUT");
             System.out.println("[0] Exit");
-            System.out.print("ENTER a number between 1 to 5: ");
+            System.out.print("ENTER a number between 1 to 6: ");
             if (input.hasNextInt()) {
                 int userChoice = input.nextInt();
                 switch (userChoice) {
