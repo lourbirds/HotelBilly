@@ -134,50 +134,33 @@ public class Main {
 
     private static int getGuests(int roomType, int roomOcc, Scanner input) {
         System.out.println("\nHow many guests will be staying?");
+        int maxGuests;
+
+        switch (roomType) {
+            case 1:
+                maxGuests = (roomOcc == 1) ? 2 : 3;
+                break;
+            case 2:
+                maxGuests = (roomOcc == 1) ? 4 : 6;
+                break;
+            case 3:
+                maxGuests = (roomOcc == 1) ? 6 : 10;
+                break;
+            default:
+                System.out.println("Invalid Room Type or Occupancy.");
+                return 0;
+        }
+
         while (true) {
             System.out.print("ENTER a number (0 to Go back): ");
             if (input.hasNextInt()) {
                 int guests = input.nextInt();
                 if (guests == 0) {
                     return 0;
+                } else if (guests <= maxGuests) {
+                    return guests;
                 } else {
-                    if (roomType == 1 && roomOcc == 1) {
-                        if (guests < 3) {
-                            return guests;
-                        } else {
-                            System.out.println("Guest number is incompatible with room Type and Occupancy Size");
-                        }
-                    } else if (roomType == 1 && roomOcc == 2) {
-                        if (guests < 4) {
-                            return guests;
-                        } else {
-                            System.out.println("Guest number is incompatible with room Type and Occupancy Size");
-                        }
-                    } else if (roomType == 2 && roomOcc == 1) {
-                        if (guests < 5) {
-                            return guests;
-                        } else {
-                            System.out.println("Guest number is incompatible with room Type and Occupancy Size");
-                        }
-                    } else if (roomType == 2 && roomOcc == 2) {
-                        if (guests < 7) {
-                            return guests;
-                        } else {
-                            System.out.println("Guest number is incompatible with room Type and Occupancy Size");
-                        }
-                    } else if (roomType == 3 && roomOcc == 1) {
-                        if (guests < 7) {
-                            return guests;
-                        } else {
-                            System.out.println("Guest number is incompatible with room Type and Occupancy Size");
-                        }
-                    } else if (roomType == 1 && roomOcc == 2) {
-                        if (guests < 11) {
-                            return guests;
-                        } else {
-                            System.out.println("Guest number is incompatible with room Type and Occupancy Size");
-                        }
-                    }
+                    System.out.println("Guest number is incompatible with Room Type and Occupancy Size");
                 }
             } else {
                 System.out.println("INCORRECT INPUT. TRY AGAIN.");
@@ -185,6 +168,7 @@ public class Main {
             }
         }
     }
+
 
     private static int getNights(Scanner input) {
         System.out.println("\nHow many nights will you be staying?");
