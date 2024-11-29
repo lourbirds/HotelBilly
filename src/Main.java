@@ -43,7 +43,8 @@ public class Main {
             System.out.println("[2] Select Room Size");
             System.out.println("[3] Select Number of Guests");
             System.out.println("[4] Select Number of Nights");
-            System.out.println("[5] CHECKOUT");
+            System.out.println("[5] Display Current Selection");
+            System.out.println("[6] CHECKOUT");
             System.out.println("[0] Exit");
             System.out.print("ENTER a number between 1 to 5: ");
             if (input.hasNextInt()) {
@@ -56,12 +57,12 @@ public class Main {
                         roomOcc = getRoomOcc(input);
                         break;
                     case 3:
-                        guestCount = getGuests(input);
+                        guestCount = getGuests(roomType, roomOcc, input);
                         break;
                     case 4:
                         nightCount = getNights(input);
                         break;
-                    case 5:
+                    case 6:
                         totalPrice = finalCompute(roomType, roomOcc, nightCount, guestCount, input);
                         // Wanted to use a String List or a Class to hold multiple values but too risky.
                         // TODO: Ask if it is okay to use Classes.
@@ -131,7 +132,7 @@ public class Main {
         }
     }
 
-    private static int getGuests(Scanner input) {
+    private static int getGuests(int roomType, int roomOcc, Scanner input) {
         System.out.println("\nHow many guests will be staying?");
         while (true) {
             System.out.print("ENTER a number (0 to Go back): ");
@@ -140,7 +141,43 @@ public class Main {
                 if (guests == 0) {
                     return 0;
                 } else {
-                    return guests;
+                    if (roomType == 1 && roomOcc == 1) {
+                        if (guests < 3) {
+                            return guests;
+                        } else {
+                            System.out.println("Guest number is incompatible with room Type and Occupancy Size");
+                        }
+                    } else if (roomType == 1 && roomOcc == 2) {
+                        if (guests < 4) {
+                            return guests;
+                        } else {
+                            System.out.println("Guest number is incompatible with room Type and Occupancy Size");
+                        }
+                    } else if (roomType == 2 && roomOcc == 1) {
+                        if (guests < 5) {
+                            return guests;
+                        } else {
+                            System.out.println("Guest number is incompatible with room Type and Occupancy Size");
+                        }
+                    } else if (roomType == 2 && roomOcc == 2) {
+                        if (guests < 7) {
+                            return guests;
+                        } else {
+                            System.out.println("Guest number is incompatible with room Type and Occupancy Size");
+                        }
+                    } else if (roomType == 3 && roomOcc == 1) {
+                        if (guests < 7) {
+                            return guests;
+                        } else {
+                            System.out.println("Guest number is incompatible with room Type and Occupancy Size");
+                        }
+                    } else if (roomType == 1 && roomOcc == 2) {
+                        if (guests < 11) {
+                            return guests;
+                        } else {
+                            System.out.println("Guest number is incompatible with room Type and Occupancy Size");
+                        }
+                    }
                 }
             } else {
                 System.out.println("INCORRECT INPUT. TRY AGAIN.");
