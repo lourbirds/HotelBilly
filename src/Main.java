@@ -255,7 +255,7 @@ public class Main {
                 roomTypeName = "";
                 break;
         }
-        switch (roomType) {
+        switch (roomSize) {
             case 1:
                 roomSizeName = "Single Occupancy";
                 break;
