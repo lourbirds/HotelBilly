@@ -64,8 +64,9 @@ public class Main {
                     case 5:
                         checkRoomCompatibility();
                         totalPrice = finalCompute(roomType, roomOcc, nightCount, guestCount, input);
-                        userInfo();
-                        receipt();
+                        // Wanted to use a String List or a Class to hold multiple values but too risky.
+                        // TODO: Ask if it is okay to use Classes.
+                        checkout(roomType, roomOcc, nightCount, guestCount, input);
                         finalComp = true;
                         break;
                     case 0:
@@ -210,22 +211,21 @@ public class Main {
         if (nights > 3) {
             total -= (total * 0.15);
         }
-
         total += (total * 0.12);
 
         return total;
     }
 
     private static void checkRoomCompatibility() {
-
+        // Check guests against occupancy size and type
     }
 
-    private static void userInfo() {
-
-    }
-
-    private static void receipt() {
-
+    private static void checkout(int roomType, int roomSize, int nights, int guests, Scanner input) {
+        System.out.println("Please input your information to proceed to checkout");
+        System.out.println("Enter your Name: ");
+        System.out.println("Enter your Age: ");
+        System.out.println("Enter your Contact Number: ");
+        System.out.println("Enter your Email: ");
     }
         
 }
