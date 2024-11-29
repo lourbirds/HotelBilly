@@ -36,7 +36,6 @@ public class Main {
 
     private static void displayOptions(Scanner input) {
         int roomType = 0, roomOcc = 0, nightCount = 0, guestCount = 0;
-        float totalPrice;
         boolean finalComp = false;
         while (finalComp != true) {
             System.out.println("\n[1] Select Room Type");
@@ -67,12 +66,10 @@ public class Main {
                         break;
                     case 6:
                         if (roomType == 0 || roomOcc == 0 || nightCount == 0 || guestCount == 0) {
-                            System.out.println("You have inputted all values for your Room Stay");
+                            System.out.println("You have not inputted all values for your Room Stay");
                         } else {
-                            totalPrice = finalCompute(roomType, roomOcc, nightCount, guestCount, input);
                             checkout(roomType, roomOcc, nightCount, guestCount, input);
                             finalComp = true;
-                            System.out.println(totalPrice);
                         }
                         break;
                     case 0:
@@ -271,17 +268,52 @@ public class Main {
         }
         System.out.println("\nROOM TYPE: " + roomTypeName);
         System.out.println("OCCUPANCY SIZE: " + roomSizeName);
-        System.out.println("NUMBER OF NIGHTS: " + nights);
         System.out.println("GUESTS: " + guests);
+        System.out.println("NUMBER OF NIGHTS: " + nights);
     }
 
-    // TODO
     private static void checkout(int roomType, int roomSize, int nights, int guests, Scanner input) {
-        System.out.println("Please input your information to proceed to checkout");
-        System.out.println("Enter your Name: ");
-        System.out.println("Enter your Age: ");
-        System.out.println("Enter your Contact Number: ");
-        System.out.println("Enter your Email: ");
-    }
+        String name, email;
+        int age;
+        long contact;
+        float totalPrice;
+        input.nextLine();
+        System.out.println("\nPlease input your information to proceed to checkout");
+        System.out.print("Enter your Name: ");
+        name = input.nextLine();
+        while (true) {
+            System.out.print("Enter your Age: ");
+            if (input.hasNextInt()) {
+                age = input.nextInt();
+                break;
+            } else {
+                System.out.println("INCORRECT INPUT. TRY AGAIN");
+                input.nextLine();
+            }
+        }
+        while (true) {
+            System.out.print("Enter your Contact Number: ");
+            if (input.hasNextLong()) {
+                contact = input.nextLong();
+                break;
+            } else {
+                System.out.println("INCORRECT INPUT. TRY AGAIN");
+                input.nextLine();
+            }
+        }
+        System.out.print("Enter your Email: ");
+        input.nextLine();
+        email = input.nextLine();
+
+        totalPrice = finalCompute(roomType, roomSize, nights, guests, input);
+
+        System.out.println("\n==========================================");
+        System.out.printf("To be paid by: %s (%d)\n", name, age);
+        System.out.println("Contact No.: " + name);
+        System.out.println("Email: " + name);
+        System.out.println("TOTAL BILL: " + totalPrice);
         
+        // TODO
+        System.out.println("\nProceed? (y/n)");
+    }
 }
