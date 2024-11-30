@@ -84,7 +84,6 @@ public class HotelBilly {
                 input.next();
             }
         }
-    	
     }
 
     private static int getRoomType(Scanner input){
@@ -159,7 +158,7 @@ public class HotelBilly {
                 int guests = input.nextInt();
                 if (guests == 0) {
                     return 0;
-                } else if (guests <= maxGuests) {
+                } else if (guests <= maxGuests && guests > 0) {
                     return guests;
                 } else {
                     System.out.println("GUEST LIMIT EXCEEDED: Guest number is incompatible with Room Type and Occupancy Size");
@@ -181,7 +180,7 @@ public class HotelBilly {
                 int nights = input.nextInt();
                 if (nights == 0) {
                     return 0;
-                } else {
+                } else if (nights > 0) {
                     return nights;
                 }
             } else {
@@ -216,9 +215,6 @@ public class HotelBilly {
                     roomBasePrice = 4000;
                 }
                 break;
-            default:
-                    roomBasePrice = 4000;
-                break;
         }
 
         if (roomSize == 1) {
@@ -234,6 +230,7 @@ public class HotelBilly {
         if (nights > 3) {
             total -= (total * 0.15);
         }
+
         total += (total * 0.12);
 
         return total;
