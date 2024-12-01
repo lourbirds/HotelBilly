@@ -3,6 +3,7 @@ import java.util.Scanner;
 public class HotelBilly {
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
+        int userChoice;
 
         welcome();
         while (true) {
@@ -11,7 +12,7 @@ public class HotelBilly {
             System.out.println("[0] Exit");
             System.out.print("ENTER 1 or 0: ");
             if (input.hasNextInt()) {
-                int userChoice = input.nextInt();
+                userChoice = input.nextInt();
                 switch (userChoice) {
                     case 1:
                         displayOptions(input);
@@ -20,11 +21,11 @@ public class HotelBilly {
                         System.out.println("EXITING PROGRAM...");
                         System.exit(0);
                     default:
-                        System.out.println("INCORRECT INPUT. TRY AGAIN.");
+                        System.out.println("INCORRECT INPUT: Input out of range. Try Again.");
                         break;
                 }
             } else {
-                System.out.println("INCORRECT INPUT. TRY AGAIN.");
+                System.out.println("INCORRECT INPUT: Invalid input type. Try Again.");
                 input.next();
             }
         }
@@ -36,8 +37,7 @@ public class HotelBilly {
 
     private static void displayOptions(Scanner input) {
         int roomType = 0, roomOcc = 0, nightCount = 0, guestCount = 0;
-        boolean finalComp = false;
-        while (finalComp != true) {
+        while (true) {
             System.out.println("\n[1] Select Room Type");
             System.out.println("[2] Select Room Size");
             System.out.println("[3] Select Number of Guests");
@@ -69,18 +69,18 @@ public class HotelBilly {
                             System.out.println("MISSING DATA: You have not inputted all values for your Room Stay");
                         } else {
                             checkout(roomType, roomOcc, nightCount, guestCount, input);
-                            finalComp = true;
+                            return;
                         }
                         break;
                     case 0:
                         System.out.println("EXITING PROGRAM...");
                         System.exit(0);
                     default:
-                        System.out.println("INCORRECT INPUT. TRY AGAIN.");
+                        System.out.println("INCORRECT INPUT: Input out of range. Try Again.");
                         break;
                 }
             } else {
-                System.out.println("INCORRECT INPUT. TRY AGAIN.");
+                System.out.println("INCORRECT INPUT: Invalid input type. Try Again.");
                 input.next();
             }
         }
@@ -101,10 +101,10 @@ public class HotelBilly {
                 } else if (roomSelection > 0 && roomSelection < 4) {
                     return roomSelection;
                 } else {
-                    System.out.println("INCORRECT INPUT. TRY AGAIN.");
+                    System.out.println("INCORRECT INPUT: Input out of range. Try Again.");
                 }
             } else {
-                System.out.println("INCORRECT INPUT. TRY AGAIN.");
+                System.out.println("INCORRECT INPUT: Invalid input type. Try Again.");
                 input.next();
             }
         }
@@ -124,10 +124,10 @@ public class HotelBilly {
                 } else if (roomSelection > 0 && roomSelection < 3) {
                     return roomSelection;
                 } else {
-                    System.out.println("INCORRECT INPUT. TRY AGAIN.");
+                    System.out.println("INCORRECT INPUT: Input out of range. Try Again.");
                 }
             } else {
-                System.out.println("INCORRECT INPUT. TRY AGAIN.");
+                System.out.println("INCORRECT INPUT: Invalid input type. Try Again.");
                 input.next();
             }
         }
@@ -160,11 +160,13 @@ public class HotelBilly {
                     return 0;
                 } else if (guests <= maxGuests && guests > 0) {
                     return guests;
+                } else  if (guests <= 0){
+                    System.out.println("GUEST LIMIT SUBCEEDED: Guest number is incompatible with Room Type and Occupancy Size");
                 } else {
                     System.out.println("GUEST LIMIT EXCEEDED: Guest number is incompatible with Room Type and Occupancy Size");
                 }
             } else {
-                System.out.println("INCORRECT INPUT. TRY AGAIN.");
+                System.out.println("INCORRECT INPUT: Invalid input type. Try Again.");
                 input.next();
             }
         }
@@ -184,7 +186,7 @@ public class HotelBilly {
                     return nights;
                 }
             } else {
-                System.out.println("INCORRECT INPUT. TRY AGAIN.");
+                System.out.println("INCORRECT INPUT: Invalid input type. Try Again.");
                 input.next();
             }
         }
@@ -282,9 +284,13 @@ public class HotelBilly {
             System.out.print("Enter your Age: ");
             if (input.hasNextInt()) {
                 age = input.nextInt();
-                break;
+                if (age > 0 && age < 200) {
+                    break;
+                } else {
+                    System.out.println("INCORRECT INPUT: Input out of range. Try Again.");
+                }
             } else {
-                System.out.println("INCORRECT INPUT. TRY AGAIN");
+                System.out.println("INCORRECT INPUT: Invalid input type. Try Again.");
                 input.nextLine();
             }
         }
@@ -292,9 +298,13 @@ public class HotelBilly {
             System.out.print("Enter your Contact Number: ");
             if (input.hasNextLong()) {
                 contact = input.nextLong();
-                break;
+                if (String.valueOf(contact).length() > 6 && String.valueOf(contact).length() < 16) {
+                    break;
+                } else {
+                    System.out.println("INCORRECT INPUT: Input out of range. Try Again.");
+                }
             } else {
-                System.out.println("INCORRECT INPUT. TRY AGAIN");
+                System.out.println("INCORRECT INPUT: Invalid input type. Try Again.");
                 input.nextLine();
             }
         }
@@ -322,6 +332,8 @@ public class HotelBilly {
                     return;
                 default:
                     System.out.println("INCORRECT INPUT. TRY AGAIN");
+                System.out.println("INCORRECT INPUT: Invalid input type. Try Again.");
+                System.out.println("INCORRECT INPUT: Input out of range. Try Again.");
                     break;
             }
         }
