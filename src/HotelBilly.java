@@ -321,19 +321,18 @@ public class HotelBilly {
         System.out.println("TOTAL BILL: " + totalPrice);
         
         while (true) {
-            System.out.print("\nProceed? (y/n): ");
-            char proceed = input.next().charAt(0);
+            System.out.print("\nProceed?");
+            System.out.println("Enter yes/no:");
+            String proceed = input.nextLine().toLowerCase();
             switch (proceed) {
-                case 'y':
+                case "yes":
                     System.out.println("You have booked your stay at HOTEL DE LUNA!");
                     return;
-                case 'n':
+                case "no":
                     System.out.println("Going back to menu...");
                     return;
                 default:
-                    System.out.println("INCORRECT INPUT. TRY AGAIN");
-                System.out.println("INCORRECT INPUT: Invalid input type. Try Again.");
-                System.out.println("INCORRECT INPUT: Input out of range. Try Again.");
+                    System.out.println("INCORRECT INPUT: Input out of range. Try Again.");
                     break;
             }
         }
