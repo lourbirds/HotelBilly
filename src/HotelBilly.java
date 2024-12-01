@@ -44,7 +44,7 @@ public class HotelBilly {
             System.out.println("[4] Select Number of Nights");
             System.out.println("[5] Display Current Selection");
             System.out.println("[6] CHECKOUT");
-            System.out.println("[0] Exit");
+            System.out.println("[0] Back to Menu");
             System.out.print("ENTER a number between 1 to 6: ");
             if (input.hasNextInt()) {
                 int userChoice = input.nextInt();
@@ -73,8 +73,7 @@ public class HotelBilly {
                         }
                         break;
                     case 0:
-                        System.out.println("EXITING PROGRAM...");
-                        System.exit(0);
+                        return;
                     default:
                         System.out.println("INCORRECT INPUT: Input out of range. Try Again.");
                         break;
