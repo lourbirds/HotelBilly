@@ -10,23 +10,25 @@ public class HotelBilly {
             System.out.println("\nWould you like to Book a night or Exit?");
             System.out.println("[1] Book a night");
             System.out.println("[0] Exit");
-            System.out.print("ENTER 1 or 0: ");
-            if (input.hasNextInt()) {
-                userChoice = input.nextInt();
-                switch (userChoice) {
-                    case 1:
-                        displayOptions(input);
-                        break;
-                    case 0:
-                        System.out.println("EXITING PROGRAM...");
-                        System.exit(0);
-                    default:
-                        System.out.println("INCORRECT INPUT: Input out of range. Try Again.");
-                        break;
+            while (true) {
+                System.out.print("ENTER 1 or 0: ");
+                if (input.hasNextInt()) {
+                    userChoice = input.nextInt();
+                    switch (userChoice) {
+                        case 1:
+                            displayOptions(input);
+                            break;
+                        case 0:
+                            System.out.println("EXITING PROGRAM...");
+                            System.exit(0);
+                        default:
+                            System.out.println("INCORRECT INPUT: Input out of range. Try Again.");
+                            break;
+                    }
+                } else {
+                    System.out.println("INCORRECT INPUT: Invalid input type. Try Again.");
+                    input.next();
                 }
-            } else {
-                System.out.println("INCORRECT INPUT: Invalid input type. Try Again.");
-                input.next();
             }
         }
     }
@@ -38,50 +40,13 @@ public class HotelBilly {
     private static void displayOptions(Scanner input) {
         int roomType = 0, roomOcc = 0, nightCount = 0, guestCount = 0;
         while (true) {
-            System.out.println("\n[1] Select Room Type");
-            System.out.println("[2] Select Room Size");
-            System.out.println("[3] Select Number of Guests");
-            System.out.println("[4] Select Number of Nights");
-            System.out.println("[5] Display Current Selection");
-            System.out.println("[6] CHECKOUT");
-            System.out.println("[0] Back to Menu");
-            System.out.print("ENTER a number between 1 to 6: ");
-            if (input.hasNextInt()) {
-                int userChoice = input.nextInt();
-                switch (userChoice) {
-                    case 1:
-                        roomType = getRoomType(input);
-                        break;
-                    case 2:
-                        roomOcc = getRoomOcc(input);
-                        break;
-                    case 3:
-                        guestCount = getGuests(roomType, roomOcc, input);
-                        break;
-                    case 4:
-                        nightCount = getNights(input);
-                        break;
-                    case 5:
-                        displaySelection(roomType, roomOcc, nightCount, guestCount, input);
-                        break;
-                    case 6:
-                        if (roomType == 0 || roomOcc == 0 || nightCount == 0 || guestCount == 0) {
-                            System.out.println("MISSING DATA: You have not inputted all values for your Room Stay");
-                        } else {
-                            checkout(roomType, roomOcc, nightCount, guestCount, input);
-                            return;
-                        }
-                        break;
-                    case 0:
-                        return;
-                    default:
-                        System.out.println("INCORRECT INPUT: Input out of range. Try Again.");
-                        break;
-                }
-            } else {
-                System.out.println("INCORRECT INPUT: Invalid input type. Try Again.");
-                input.next();
-            }
+            roomType = getRoomType(input);
+            roomOcc = getRoomOcc(input);
+            guestCount = getGuests(roomType, roomOcc, input);
+            nightCount = getNights(input);
+            displaySelection(roomType, roomOcc, nightCount, guestCount, input);
+            checkout(roomType, roomOcc, nightCount, guestCount, input);
+            return;
         }
     }
 
@@ -90,14 +55,11 @@ public class HotelBilly {
         System.out.println("[1] Standard (1800.00 for Single Occupancy OR 2700.00 for Double Occupancy)");
         System.out.println("[2] Deluxe (2300.00 for Single Occupancy OR 3200.00 for Double Occupancy)");
         System.out.println("[3] Suite (3000.00 for Single Occupancy OR 4000.00 for Double Occupancy)");
-        System.out.println("[0] Go back");
         while (true) {
             System.out.print("ENTER a number between 1 to 3: ");
             if (input.hasNextInt()) {
                 int roomSelection = input.nextInt();
-                if (roomSelection == 0) {
-                    return 0;
-                } else if (roomSelection > 0 && roomSelection < 4) {
+                if (roomSelection > 0 && roomSelection < 4) {
                     return roomSelection;
                 } else {
                     System.out.println("INCORRECT INPUT: Input out of range. Try Again.");
@@ -113,14 +75,11 @@ public class HotelBilly {
         System.out.println("\nSelect your Room Occupancy");
         System.out.println("[1] (Can Support 2, 4, or 6 guests)");
         System.out.println("[2] (Can support 3, 6, or 10 guests. Additional 900 per night.)");
-        System.out.println("[0] Go back");
         while (true) {
             System.out.print("ENTER a number between 1 to 2: ");
             if (input.hasNextInt()) {
                 int roomSelection = input.nextInt();
-                if (roomSelection == 0) {
-                    return 0;
-                } else if (roomSelection > 0 && roomSelection < 3) {
+                if (roomSelection > 0 && roomSelection < 3) {
                     return roomSelection;
                 } else {
                     System.out.println("INCORRECT INPUT: Input out of range. Try Again.");
@@ -176,12 +135,10 @@ public class HotelBilly {
         System.out.println("\nHow many nights will you be staying?");
         System.out.println("(15% discount is offered at checkout if you stay for more than 3 nights!)");
         while (true) {
-            System.out.print("ENTER a number (0 to Go back): ");
+            System.out.print("ENTER a number: ");
             if (input.hasNextInt()) {
                 int nights = input.nextInt();
-                if (nights == 0) {
-                    return 0;
-                } else if (nights > 0) {
+                if (nights > 0) {
                     return nights;
                 }
             } else {
@@ -320,7 +277,7 @@ public class HotelBilly {
         System.out.println("TOTAL BILL: " + totalPrice);
         
         while (true) {
-            System.out.print("\nProceed?");
+            System.out.print("\nProceed?\n");
             System.out.println("Enter yes/no:");
             String proceed = input.nextLine().toLowerCase();
             switch (proceed) {
