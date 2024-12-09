@@ -7,10 +7,10 @@ public class HotelBilly {
 
         welcome();
         while (true) {
-            System.out.println("\nWould you like to Book a night or Exit?");
-            System.out.println("[1] Book a night");
-            System.out.println("[0] Exit");
             while (true) {
+                System.out.println("\nWould you like to Book a night or Exit?");
+                System.out.println("[1] Book a night");
+                System.out.println("[0] Exit");
                 System.out.print("ENTER 1 or 0: ");
                 if (input.hasNextInt()) {
                     userChoice = input.nextInt();
