@@ -32,10 +32,10 @@ public class HotelBilly {
         while (true) {
             while (true) {
                 System.out.println("");              
-                System.out.println( Green + "++==================================================++" + Reset );  //54 Lines
+                System.out.println( Green + "++==================================================++" + Reset );
                 System.out.println( Green + "||             " + Reset + Bold + Yellow + "Welcome to Hotel De Luna" + Reset + Green + "             ||" + Reset);
                 System.out.println( Green + "||                                                  ||" + Reset );
-                System.out.println( Green + "||\t" + Reset + "Would you like to Book a night or Exit?" + Reset + Green + "     ||" + Reset ); //ADD MAIN MENU?? txt
+                System.out.println( Green + "||\t" + Reset + "Would you like to Book a night or Exit?" + Reset + Green + "     ||" + Reset );
                 System.out.println( Green + "||\t" + Reset + Magenta + "[1]" + Reset + Gray + "   Book a night" + Reset + Green + "                          ||" + Reset );
                 System.out.println( Green + "||\t" + Reset + Magenta + "[0]" + Reset + Gray + "   Exit" + Reset + Green + "                                  ||" + Reset );
                 System.out.println( Green + "||                                                  ||" + Reset );
@@ -283,7 +283,7 @@ public class HotelBilly {
                 }
                 break;
              default:
-            System.out.println("Invalid Room Type or Occupancy.");//???????
+                System.out.println("Invalid Room Type or Occupancy.");
                 return 0;
         }    
         while (true) {
