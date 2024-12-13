@@ -18,14 +18,16 @@ public class HotelBilly {
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
         int userChoice;
-        System.out.println(Bold+Magenta+            "          _    _       _       _ ____  _ _ _       \n" + //
-                                "         | |  | |     | |     | |  _ \\(_) | |      \n" + //
-                                "         | |__| | ___ | |_ ___| | |_) |_| | |_   _ \n" + //
-                                "         |  __  |/ _ \\| __/ _ \\ |  _ <| | | | | | |\n" + //
-                                "         | |  | | (_) | ||  __/ | |_) | | | | |_| |\n" + //
-                                "         |_|  |_|\\___/ \\__\\___|_|____/|_|_|_|\\__, |\n" + //
-                                "                                             __/ |\n" + //
-                                "                                            |___/ "+Reset );
+        System.out.println(Bold + Magenta +
+            "          _    _       _       _ ____  _ _ _       \n" +
+            "         | |  | |     | |     | |  _ \\(_) | |      \n" +
+            "         | |__| | ___ | |_ ___| | |_) |_| | |_   _ \n" +
+            "         |  __  |/ _ \\| __/ _ \\ |  _ <| | | | | | |\n" +
+            "         | |  | | (_) | ||  __/ | |_) | | | | |_| |\n" +
+            "         |_|  |_|\\___/ \\__\\___|_|____/|_|_|_|\\__, |\n" +
+            "                                             __/ |\n" +
+            "                                            |___/ " + Reset);
+
         welcome();
         while (true) {
             while (true) {
@@ -281,7 +283,7 @@ public class HotelBilly {
                 }
                 break;
              default:
-            System.out.println(  "Invalid Room Type or Occupancy.");//???????
+            System.out.println("Invalid Room Type or Occupancy.");//???????
                 return 0;
         }    
         while (true) {
@@ -339,7 +341,7 @@ public class HotelBilly {
             } 
             else {
                 errorTypetxt();
-                System.out.println(Italic + "           > Invalid input. Please enter a number." + Reset);
+                System.out.println( Italic + "           > Invalid input. Please enter a number." + Reset);
                 input.next();
             }
         }
@@ -512,10 +514,10 @@ public class HotelBilly {
         System.out.println( Green + "||" + Reset + "                " + Bold + "Customer Information " + Reset + "             " + Green + "||" + Reset );
         System.out.println( Green + "++==================================================++" + Reset );
         System.out.println( Green + "||                                                  ||" + Reset );
-        System.out.println(String.format(Green + "||" + Reset + "  Name       : %-35s" + Green + "||" + Reset, name));
-        System.out.println(String.format(Green + "||" + Reset + "  Age        : %-35s" + Green + "||" + Reset, age + " year old"));
-        System.out.println(String.format(Green + "||" + Reset + "  Email      : %-35s" + Green + "||" + Reset, email));
-        System.out.println(String.format(Green + "||" + Reset + "  Contact No.: %-35s" + Green + "||" + Reset, contact));
+        System.out.println( String.format(Green + "||" + Reset + "  Name       : %-35s" + Green + "||" + Reset, name));
+        System.out.println( String.format(Green + "||" + Reset + "  Age        : %-35s" + Green + "||" + Reset, age + " year old"));
+        System.out.println( String.format(Green + "||" + Reset + "  Email      : %-35s" + Green + "||" + Reset, email));
+        System.out.println( String.format(Green + "||" + Reset + "  Contact No.: %-35s" + Green + "||" + Reset, contact));
         System.out.println( Green + "||                                                  ||" + Reset );
         displaySelection(roomType, roomSize, nights, guests);
         while (true) {
@@ -532,7 +534,7 @@ public class HotelBilly {
                 case "yes":
                     System.out.println( Green + "++===================================================++" + Reset );
                     System.out.println( Green + "||                                                   ||" + Reset );
-                    System.out.println(Green + "||" + Reset + Bold + " Thank you for booking your stay at HOTEL DE LUNA! " + Reset + Green + "||" + Reset);
+                    System.out.println( Green + "||" + Reset + Bold + " Thank you for booking your stay at HOTEL DE LUNA! " + Reset + Green + "||" + Reset);
                     System.out.println( Green + "||                                                   ||" + Reset );
                     System.out.println( Green + "++===================================================++" + Reset );
                     return;
@@ -540,7 +542,7 @@ public class HotelBilly {
                     System.out.println( Green + "++==================================================++" + Reset );
                     System.out.println( Green + "||                                                  ||" + Reset );
                     System.out.println( Green + "||" + Reset + Bold + "               Booking cancelled." + Reset + "                 "+Green + "||" + Reset );
-                    System.out.println(  Green + "||" + Reset + Cyan + "           Returning to the main menu...          " + Reset + Green + "||" + Reset );
+                    System.out.println( Green + "||" + Reset + Cyan + "           Returning to the main menu...          " + Reset + Green + "||" + Reset );
                     System.out.println( Green + "||                                                  ||" + Reset );
                     System.out.println( Green + "++==================================================++" + Reset );
                     return;
