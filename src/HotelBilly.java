@@ -16,6 +16,10 @@ public class HotelBilly {
 	public static final String Underline = "\033[4m"; 
 	public static final String Invert    = "\033[7m"; //highlight
     public static void main(String[] args) {
+        String term = System.getenv("TERM");
+        if (term == null || !term.contains("color")) {
+            System.out.println("ANSI color codes are not supported.\nColor will not be dispalyed.");
+        }
         Scanner input = new Scanner(System.in);
         int userChoice;
         System.out.println(Bold + Magenta +
