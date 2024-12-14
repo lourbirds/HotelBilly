@@ -358,7 +358,7 @@ public class HotelBilly {
                     return nights;
                 }
                 else {
-                    errorRangetxt();                                                                          
+                    errorRangetxt();
                     System.out.println(Italic + "        > Number of guests must be positive <" + Reset);
                     System.out.println(White + Bold + "------------------------------------------------------" + Reset);
                     System.out.println();
@@ -643,8 +643,12 @@ public class HotelBilly {
                     System.out.println(Green + "++==================================================++" + Reset);
                     return;
                 default:
+                    System.out.println();
+                    System.out.println(White + Bold + "------------------------------------------------------" + Reset);
                     System.out.println("- - - - - - - - " + Red + Bold + "!! INCORRECT INPUT !!" + Reset + " - - - - - - - -");
-                    System.out.println("               >" + Green + Reset + Italic + " Please enter 'yes' or 'no'" + Reset);
+                    System.out.println("           > " + Green + Reset + Italic + "Please enter 'yes' or 'no'" + " <" + Reset);
+                    System.out.println(White + Bold + "------------------------------------------------------" + Reset);
+                    System.out.println();
                     break;
             }
         }
