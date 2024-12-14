@@ -19,7 +19,7 @@ public class HotelBilly {
         String term = System.getenv("TERM");
         if (term == null || !term.contains("color")) {
             System.out.println("------------------------------------------------------");
-            System.out.println("          ANSI color codes are not supported.\n             Color will not be dispalyed =(");
+            System.out.println("          ANSI color codes are not supported.\n        Color will not be dispalyed properly =(");
             System.out.println("------------------------------------------------------");
         }
         Scanner input = new Scanner(System.in);
