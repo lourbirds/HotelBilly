@@ -6,14 +6,14 @@ public class HotelBilly {
 	public static final String Red       = "\033[31m"; //error
 	public static final String Green     = "\033[32m"; //barrier
 	public static final String Yellow    = "\033[33m"; //
-	public static final String Blue      = "\033[34m"; // 
+	public static final String Blue      = "\033[34m"; //
 	public static final String Magenta   = "\033[35m"; // options ex.[1]
-	public static final String Cyan      = "\033[36m"; // 
+	public static final String Cyan      = "\033[36m"; //
 	public static final String Gray      = "\033[37m"; //
-	public static final String White     = "\033[97m"; // 
-	public static final String Bold      = "\033[1m"; 
+	public static final String White     = "\033[97m"; //
+	public static final String Bold      = "\033[1m";
 	public static final String Italic    = "\033[3m";
-	public static final String Underline = "\033[4m"; 
+	public static final String Underline = "\033[4m";
 	public static final String Invert    = "\033[7m"; //highlight
     public static void main(String[] args) {
         String term = System.getenv("TERM");
@@ -46,9 +46,9 @@ public class HotelBilly {
                 System.out.println(Green + "||\t" + Reset + Magenta + "[0]" + Reset + Gray + "   Exit" + Reset + Green + "                                  ||" + Reset);
                 System.out.println(Green + "||                                                  ||" + Reset);
                 System.out.println(Green + "++==================================================++" + Reset);
-                System.out.println(Italic + Gray + "           Please select an option (1 or 0)            " + Reset);
+                System.out.println(Italic + Gray + "           Please select an option (1 or 0)           " + Reset);
                 System.out.println(Green + "O----------------------------------------------------O" + Reset);
-                System.out.print("  \t\tInput Number Here: ");                
+                System.out.print("  \t\tInput Number Here: ");
                 if (input.hasNextInt()) {
                     userChoice = input.nextInt();
                     System.out.println(Green + "O----------------------------------------------------O" + Reset);
