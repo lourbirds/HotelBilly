@@ -289,7 +289,7 @@ public class HotelBilly {
                     maxGuests = 6;
                     System.out.println(Green + "||" + Reset + "             Occupancy Size: Double               " + Green + "||" + Reset);
                     System.out.println(Green + "||" + Reset + "             Maximum Guests Allowed: 6            " + Green + "||" + Reset);
-                    System.out.println(Green + "||                                                  ||" + Reset )  
+                    System.out.println(Green + "||                                                  ||" + Reset);
                     System.out.println(Green + "++==================================================++" + Reset);
                 } else {
                     maxGuests = 10;
