@@ -614,6 +614,7 @@ public class HotelBilly {
         displayReceipt(roomType, roomSize, nights, guests);
         //displaySelection(roomType, roomSize, nights, guests);
         while (true) {
+            System.out.println( Green + "++==================================================++" + Reset );
             System.out.println( Green + "||                                                  ||" + Reset );// Tite na kulay blue
             System.out.println( Green + "||" + Reset + "   " + Bold + "Would you like to proceed with the booking?" + Reset + "    " + Green + "||" + Reset);
             System.out.println( Green + "||                                                  ||" + Reset );
