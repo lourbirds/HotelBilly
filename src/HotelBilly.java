@@ -104,11 +104,10 @@ public class HotelBilly {
         int roomType = 0, roomOcc = 0, nightCount = 0, guestCount = 0;
         while (true) {
             roomType = getRoomType(input);
-            roomOcc = getRoomOcc(input, roomType);
-            guestCount = getGuests(roomType, roomOcc, input);
+            guestCount = getGuests(roomType, input);
             nightCount = getNights(input);
-            displaySelection(roomType, roomOcc, nightCount, guestCount);
-            checkout(roomType, roomOcc, nightCount, guestCount, input);
+            displaySelection(roomType, nightCount, guestCount);
+            checkout(roomType, nightCount, guestCount, input);
             return;
         }
     }
@@ -120,108 +119,48 @@ public class HotelBilly {
             System.out.println(Green + "||" + Reset + Bold + "              " + "Select your Room Type" + "               " + Reset+Green + "||" + Reset);
             System.out.println(Green + "||==================================================||" + Reset);
             System.out.println(Green + "||                                                  ||" + Reset);
-            System.out.println(Green + "||\t" + Reset + Magenta + Bold + "[1]" + Reset + Gray + Bold + " Standard" + Reset + Green + "                                ||" + Reset);
-            System.out.println(Green + "||\t" + Reset + "    Price per Room Size Occupancy:" + Green + "          ||" + Reset);
-            System.out.println(Green + "||\t" + Reset + "    Single Occupancy: 1800.00 " + Green + "              ||" + Reset); 
-            System.out.println(Green + "||\t" + Reset + "    Double Occupancy: 2700.00 " + Green + "              ||" + Reset);
+            System.out.println(Green + "||\t" + Reset + Magenta + Bold + "[1]" + Reset + Gray + Bold + " Standard - Single Occupancy" + Reset + Green + "\t\t    ||" + Reset);
+            System.out.println(Green + "||\t" + Reset + "    Price per Room: 1800.00" + Green + "\t\t    ||" + Reset);
+            System.out.println(Green + "||" + Reset + "\t    " + "Maximum Guests Allowed: 2" + Green + "\t\t    ||"  +Reset);
             System.out.println(Green + "||                                                  ||" + Reset);
             System.out.println(Green + "<>--------------------------------------------------<>" + Reset);
             System.out.println(Green + "||                                                  ||" + Reset);
-            System.out.println(Green + "||\t" + Reset + Magenta + Bold + "[2]" + Reset + Gray + Bold + " Deluxe" + Reset + Green + "                                  ||" + Reset);
-            System.out.println(Green + "||\t" + Reset + "    Price per Room Size Occupancy:" + Green + "          ||" + Reset);
-            System.out.println(Green + "||\t" + Reset + "    Single Occupancy: 2300.00 " + Green + "              ||" + Reset); 
-            System.out.println(Green + "||\t" + Reset + "    Double Occupancy: 3200.00 " + Green + "              ||" + Reset);
+            System.out.println(Green + "||\t" + Reset + Magenta + Bold + "[2]" + Reset + Gray + Bold + " Standard - Double Occupancy" + Reset + Green + "\t\t    ||" + Reset);
+            System.out.println(Green + "||\t" + Reset + "    Price per Room: 2700.00" + Green + "\t\t    ||" + Reset);
+            System.out.println(Green + "||" + Reset + "\t    " + "Maximum Guests Allowed: 3" + Green + "\t\t    ||"  +Reset);
             System.out.println(Green + "||                                                  ||" + Reset);
             System.out.println(Green + "<>--------------------------------------------------<>" + Reset);
             System.out.println(Green + "||                                                  ||" + Reset);
-            System.out.println(Green + "||\t" + Reset + Magenta + Bold + "[3]" + Reset + Gray + Bold + " Suite " + Reset + Green + "                                  ||" + Reset);
-            System.out.println(Green + "||\t" + Reset + "    Price per Room Size Occupancy:" + Green + "          ||" + Reset);
-            System.out.println(Green + "||\t" + Reset + "    Single Occupancy: 3000.00 " + Green + "              ||" + Reset);
-            System.out.println(Green + "||\t" + Reset + "    Double Occupancy: 4000.00 " + Green + "              ||" + Reset);
-            System.out.println(Green + "||                                                  ||" + Reset); 
+            System.out.println(Green + "||\t" + Reset + Magenta + Bold + "[3]" + Reset + Gray + Bold + " Deluxe - Single Occupancy" + Reset + Green + "\t\t    ||" + Reset);
+            System.out.println(Green + "||\t" + Reset + "    Price per Room: 2300.00" + Green + "\t\t    ||" + Reset);
+            System.out.println(Green + "||" + Reset + "\t    " + "Maximum Guests Allowed: 4" + Green + "\t\t    ||"  +Reset);
+            System.out.println(Green + "||                                                  ||" + Reset);
+            System.out.println(Green + "<>--------------------------------------------------<>" + Reset);
+            System.out.println(Green + "||                                                  ||" + Reset);
+            System.out.println(Green + "||\t" + Reset + Magenta + Bold + "[4]" + Reset + Gray + Bold + " Deluxe - Double Occupancy" + Reset + Green + "\t\t    ||" + Reset);
+            System.out.println(Green + "||\t" + Reset + "    Price per Room: 3200.00" + Green + "\t\t    ||" + Reset);
+            System.out.println(Green + "||" + Reset + "\t    " + "Maximum Guests Allowed: 6" + Green + "\t\t    ||"  +Reset);
+            System.out.println(Green + "||                                                  ||" + Reset);
+            System.out.println(Green + "<>--------------------------------------------------<>" + Reset);
+            System.out.println(Green + "||                                                  ||" + Reset);
+            System.out.println(Green + "||\t" + Reset + Magenta + Bold + "[5]" + Reset + Gray + Bold + " Suite - Single Occupancy" + Reset + Green + "\t\t    ||" + Reset);
+            System.out.println(Green + "||\t" + Reset + "    Price per Room: 3000.00" + Green + "\t\t    ||" + Reset);
+            System.out.println(Green + "||" + Reset + "\t    " + "Maximum Guests Allowed: 6" + Green + "\t\t    ||"  +Reset);
+            System.out.println(Green + "||                                                  ||" + Reset);
+            System.out.println(Green + "<>--------------------------------------------------<>" + Reset);
+            System.out.println(Green + "||                                                  ||" + Reset);
+            System.out.println(Green + "||\t" + Reset + Magenta + Bold + "[6]" + Reset + Gray + Bold + " Suite - Double Occupancy" + Reset + Green + "\t\t    ||" + Reset);
+            System.out.println(Green + "||\t" + Reset + "    Price per Room: 4000.00" + Green + "\t\t    ||" + Reset);
+            System.out.println(Green + "||" + Reset + "\t    " + "Maximum Guests Allowed: 10" + Green + "\t\t    ||"  +Reset);
+            System.out.println(Green + "||                                                  ||" + Reset);
             System.out.println(Green + "++==================================================++" + Reset);
-            System.out.println(Italic + Gray  + "           Please select an option (1 - 3)            " + Reset);
+            System.out.println(Italic + Gray  + "           Please select an option (1 - 6)            " + Reset);
             System.out.println(Green + "O----------------------------------------------------O" + Reset);
             System.out.print("  \t\tInput Number Here: ");
             if (input.hasNextInt()) {
                 int roomSelection = input.nextInt();
                 System.out.println(Green + "O----------------------------------------------------O" + Reset );   
-                if (roomSelection > 0 && roomSelection < 4) {
-                    return roomSelection;
-                } else {
-                    errorRangetxt();
-                    System.out.println(White + Bold + "------------------------------------------------------" + Reset);
-                    System.out.println();
-                }
-            } else {
-                errorTypetxt();
-                System.out.println(White + Bold + "------------------------------------------------------" + Reset);
-                System.out.println();
-                input.next();
-            }
-        }
-    }
-    private static int getRoomOcc(Scanner input, int roomType){    
-        System.out.println();
-        System.out.println(Green + "++==================================================++" + Reset);
-        System.out.println(Green + "||" + Reset + Bold + "             " + "Select your Room Occupancy" + "           " +Reset +Green + "||" + Reset);
-        System.out.println(Green + "Oo--------------------------------------------------oO" + Reset);
-        switch(roomType){
-            case 1 -> {
-                System.out.println(Green + "||" + Reset + "                " + Bold + "Room Type: Standard" + Reset + "               " + Green + "||" + Reset);
-                System.out.println(Green + "++==================================================++" + Reset);
-                System.out.println(Green + "||                                                  ||" + Reset);
-                System.out.println(Green + "||" + Reset + "           " + Bold + Magenta + "[1]" + Reset + Bold + " " + "Single Occupancy:" + Reset + "                  " + Green + "||" + Reset);
-                System.out.println(Green + "||" + Reset + "               " + "Maximum Guests Allowed: 2" + "          " + Green + "||" + Reset);
-                System.out.println(Green + "||                                                  ||" + Reset);
-                System.out.println(Green + "++==================================================++" + Reset);
-            }
-            case 2 -> {
-                System.out.println(Green + "||" + Reset + "                " + Bold + "Room Type: Deluxe" + Reset + "                 " + Green + "||" + Reset);
-                System.out.println(Green + "++==================================================++" + Reset);
-                System.out.println(Green + "||                                                  ||" + Reset);
-                System.out.println(Green + "||" + Reset + "           " + Bold + Magenta + "[1]" + Reset + Bold + " " + "Single Occupancy:" + Reset + "                  " + Green + "||" + Reset);
-                System.out.println(Green + "||" + Reset + "               " + "Maximum Guests Allowed: 4" + "          " + Green + "||" + Reset);
-                System.out.println(Green + "||                                                  ||" + Reset);
-                System.out.println(Green + "++==================================================++" + Reset);
-            }
-            case 3 -> {
-                System.out.println(Green + "||" + Reset + "                " + Bold + "Room Type: Suite" + Reset + "                  " + Green + "||" + Reset); 
-                System.out.println(Green + "++==================================================++" + Reset);
-                System.out.println(Green + "||                                                  ||" + Reset);
-                System.out.println(Green + "||" + Reset + "           " + Bold + Magenta + "[1]" + Reset + Bold + " " + "Single Occupancy:" + Reset + "                  " + Green + "||" + Reset);
-                System.out.println(Green + "||" + Reset + "               " + "Maximum Guests Allowed: 6" + "          " + Green + "||" + Reset);
-                System.out.println(Green + "||                                                  ||" + Reset);
-                System.out.println(Green + "++==================================================++" + Reset);
-            }
-        }
-        System.out.println(Green + "||                                                  ||" + Reset);
-        System.out.println(Green + "||" + Reset + "           " + Bold + Magenta + "[2]" + Reset + Bold + " " + "Double Occupancy:" + Reset + "                  " + Green + "||" + Reset);
-        switch(roomType){
-            case 1 -> {
-                System.out.println(Green + "||" + Reset + "               " + "Maximum Guests Allowed: 3" + "          " + Green + "||" + Reset);
-                System.out.println(Green + "||                                                  ||" + Reset);
-                System.out.println(Green + "++==================================================++" + Reset);
-            }
-            case 2 -> {
-                System.out.println(Green + "||" + Reset + "               " + "Maximum Guests Allowed: 6" + "          " + Green + "||" + Reset);
-                System.out.println(Green + "||                                                  ||" + Reset);
-                System.out.println(Green + "++==================================================++" + Reset);
-            }
-            case 3 -> {
-                System.out.println(Green + "||" + Reset + "               " + "Maximum Guests Allowed: 10" + "         " + Green + "||" + Reset);
-                System.out.println(Green + "||                                                  ||" + Reset);
-                System.out.println(Green + "++==================================================++" + Reset);
-            }
-        }
-        while (true) {
-            System.out.println(Italic + Gray  + "           Please select an option (1 - 2)            " + Reset);
-            System.out.println(Green + "O----------------------------------------------------O" + Reset); 
-            System.out.print("  \t\tInput Number Here: ");
-            if (input.hasNextInt()) {
-                int roomSelection = input.nextInt();
-                System.out.println(Green + "O----------------------------------------------------O" + Reset); 
-                if (roomSelection > 0 && roomSelection < 3) {
+                if (roomSelection > 0 && roomSelection < 7) {
                     return roomSelection;
                 } else {
                     errorRangetxt();
@@ -237,7 +176,7 @@ public class HotelBilly {
         }
     }
     // ********************************** GET GUEST ************************************ 
-    private static int getGuests(int roomType, int roomOcc, Scanner input) {
+    private static int getGuests(int roomType, Scanner input) {
         System.out.println();
         System.out.println(Green + "++==================================================++" + Reset);
         System.out.println(Green + "||" + Reset + Bold + "             Enter the number of guest            "+Reset+Green+"||"+Reset);
@@ -248,59 +187,60 @@ public class HotelBilly {
         int maxGuests = 0;
         switch (roomType) {
             case 1:
+                maxGuests = 2;
                 System.out.println(Green + "||" + Reset + "                                                  " + Green + "||" + Reset);
                 System.out.println(Green + "||" + Reset + "             Room Type: Standard                  " + Green + "||" + Reset);
-                if(roomOcc==1){
-                    maxGuests = 2;
-                    System.out.println(Green + "||" + Reset + "             Occupancy Size: Single               " + Green + "||" + Reset);
-                    System.out.println(Green + "||" + Reset + "             Maximum Guests Allowed: 2            " + Green + "||" + Reset);
-                    System.out.println(Green + "||                                                  ||" + Reset);
-                    System.out.println(Green + "++==================================================++" + Reset);
-                } else{
-                    maxGuests = 3;
-                    System.out.println(Green + "||" + Reset + "             Occupancy Size: Double               " + Green + "||" + Reset);
-                    System.out.println(Green + "||" + Reset + "             Maximum Guests Allowed: 3            " + Green + "||" + Reset );   
-                    System.out.println(Green + "||                                                  ||" + Reset);
-                    System.out.println(Green + "++==================================================++" + Reset);
-                }
-                break;
-           case 2:
+                System.out.println(Green + "||" + Reset + "             Occupancy Size: Single               " + Green + "||" + Reset);
+                System.out.println(Green + "||" + Reset + "             Maximum Guests Allowed: 2            " + Green + "||" + Reset);
                 System.out.println(Green + "||                                                  ||" + Reset);
-                System.out.println(Green + "||" + Reset + "             Room Type: Deluxe Room               " + Green + "||" + Reset);
-                if (roomOcc ==1){
-                    maxGuests = 4;
-                    System.out.println(Green + "||" + Reset + "             Occupancy Size: Single               " + Green + "||" + Reset);
-                    System.out.println(Green + "||" + Reset + "             Maximum Guests Allowed: 4            " + Green + "||" + Reset);
-                    System.out.println(Green + "||                                                  ||" + Reset);
-                    System.out.println(Green + "++==================================================++" + Reset);
-                } else {
-                    maxGuests = 6;
-                    System.out.println(Green + "||                                                  ||" + Reset);
-                    System.out.println(Green + "||" + Reset + "             Occupancy Size: Double               " + Green + "||" + Reset);
-                    System.out.println(Green + "||" + Reset + "             Maximum Guests Allowed: 6            " + Green + "||" + Reset);  
-                    System.out.println(Green + "||                                                  ||" + Reset);
-                    System.out.println(Green + "++==================================================++" + Reset);
-                }
+                System.out.println(Green + "++==================================================++" + Reset);
+                break;
+            case 2:
+                maxGuests = 3;
+                System.out.println(Green + "||" + Reset + "                                                  " + Green + "||" + Reset);
+                System.out.println(Green + "||" + Reset + "             Room Type: Standard                  " + Green + "||" + Reset);
+                System.out.println(Green + "||" + Reset + "             Occupancy Size: Double               " + Green + "||" + Reset);
+                System.out.println(Green + "||" + Reset + "             Maximum Guests Allowed: 3            " + Green + "||" + Reset);
+                System.out.println(Green + "||                                                  ||" + Reset);
+                System.out.println(Green + "++==================================================++" + Reset);
                 break;
             case 3:
+                maxGuests = 4;
+                System.out.println(Green + "||" + Reset + "                                                  " + Green + "||" + Reset);
+                System.out.println(Green + "||" + Reset + "             Room Type: Deluxe                    " + Green + "||" + Reset);
+                System.out.println(Green + "||" + Reset + "             Occupancy Size: Single               " + Green + "||" + Reset);
+                System.out.println(Green + "||" + Reset + "             Maximum Guests Allowed: 4            " + Green + "||" + Reset);
                 System.out.println(Green + "||                                                  ||" + Reset);
-                System.out.println(Green + "||" + Reset + "             Room Type: Suite Room                " + Green + "||" + Reset);
-                if (roomOcc ==1){
-                    maxGuests = 6;
-                    System.out.println(Green + "||" + Reset + "             Occupancy Size: Double               " + Green + "||" + Reset);
-                    System.out.println(Green + "||" + Reset + "             Maximum Guests Allowed: 6            " + Green + "||" + Reset);
-                    System.out.println(Green + "||                                                  ||" + Reset);
-                    System.out.println(Green + "++==================================================++" + Reset);
-                } else {
-                    maxGuests = 10;
-                    System.out.println(Green + "||" + Reset + "             Occupancy Size: Double               " + Green + "||" + Reset);
-                    System.out.println(Green + "||" + Reset + "             Maximum Guests Allowed: 10           " + Green + "||" + Reset);
-                    System.out.println(Green + "||                                                  ||" + Reset);
-                    System.out.println(Green + "++==================================================++" + Reset);
-                }
+                System.out.println(Green + "++==================================================++" + Reset);
+                break;
+            case 4:
+                maxGuests = 6;
+                System.out.println(Green + "||" + Reset + "                                                  " + Green + "||" + Reset);
+                System.out.println(Green + "||" + Reset + "             Room Type: Deluxe                    " + Green + "||" + Reset);
+                System.out.println(Green + "||" + Reset + "             Occupancy Size: Double               " + Green + "||" + Reset);
+                System.out.println(Green + "||" + Reset + "             Maximum Guests Allowed: 6            " + Green + "||" + Reset);
+                System.out.println(Green + "||                                                  ||" + Reset);
+                System.out.println(Green + "++==================================================++" + Reset);
+                break;
+            case 5:
+                maxGuests = 6;
+                System.out.println(Green + "||" + Reset + "                                                  " + Green + "||" + Reset);
+                System.out.println(Green + "||" + Reset + "             Room Type: Suite                     " + Green + "||" + Reset);
+                System.out.println(Green + "||" + Reset + "             Occupancy Size: Single               " + Green + "||" + Reset);
+                System.out.println(Green + "||" + Reset + "             Maximum Guests Allowed: 6            " + Green + "||" + Reset);
+                System.out.println(Green + "||                                                  ||" + Reset);
+                System.out.println(Green + "++==================================================++" + Reset);
+                break;
+            case 6:
+                maxGuests = 10;
+                System.out.println(Green + "||" + Reset + "                                                  " + Green + "||" + Reset);
+                System.out.println(Green + "||" + Reset + "             Room Type: Suite                     " + Green + "||" + Reset);
+                System.out.println(Green + "||" + Reset + "             Occupancy Size: Double               " + Green + "||" + Reset);
+                System.out.println(Green + "||" + Reset + "             Maximum Guests Allowed: 10           " + Green + "||" + Reset);
+                System.out.println(Green + "||                                                  ||" + Reset);
+                System.out.println(Green + "++==================================================++" + Reset);
                 break;
              default:
-                System.out.println("Invalid Room Type or Occupancy.");
                 return 0;
         }    
         while (true) {
@@ -374,37 +314,29 @@ public class HotelBilly {
         }
     }
     //-------------------------- Computation ------------------------------------------------
-    private static float finalCompute(int roomType, int roomSize, int nights, int guests) {
-        int roomBasePrice = 0, guestAddCharge = 0;
+    private static float finalCompute(int roomType, int nights, int guests, int roomBasePrice) {
         float total = 0;
         switch (roomType) {
             case 1:
-                if (roomSize == 1) {
-                    roomBasePrice = 1800;
-                } else if (roomSize == 2) {
-                    roomBasePrice = 2700;
-                }
+                roomBasePrice = 1800;
                 break;
             case 2:
-                if (roomSize == 1) {
-                    roomBasePrice = 2300;
-                } else if (roomSize == 2) {
-                    roomBasePrice = 3200;
-                }
+                roomBasePrice = 2700;
                 break;
             case 3:
-                if (roomSize == 1) {
-                    roomBasePrice = 3000;
-                } else if (roomSize == 2) {
-                    roomBasePrice = 4000;
-                }
+                roomBasePrice = 2300;
+                break;
+            case 4:
+                roomBasePrice = 3200;
+                break;
+            case 5:
+                roomBasePrice = 3000;
+                break;
+            case 6:
+                roomBasePrice = 4000;
                 break;
         }
-        if (roomSize == 1) {
-            guestAddCharge = (guests - 1) * (int)(roomBasePrice * 0.10);
-        } else if (roomSize == 2 && guests > 1) {
-            guestAddCharge = (guests - 2) * (int)(roomBasePrice * 0.10);
-        }
+        int guestAddCharge = guestAddChargeComp(roomType, guests, roomBasePrice);
         roomBasePrice += guestAddCharge;
         total = roomBasePrice * nights;
 
@@ -414,35 +346,68 @@ public class HotelBilly {
         total += (total * 0.12);
         return total;
     }
+    private static int roomBasePriceSelect(int roomType) {
+        switch (roomType) {
+            case 1:
+                return 1800;
+            case 2:
+                return 2700;
+            case 3:
+                return 2300;
+            case 4:
+                return 3200;
+            case 5:
+                return 3000;
+            case 6:
+                return 4000;
+            default:
+                return 0;
+        }
+    }
+    private static int guestAddChargeComp(int roomType, int guests, int roomBasePrice) {
+        int guestAddCharge = 0;
+        if (roomType == 1 || roomType == 3 || roomType == 5) {
+            guestAddCharge = (guests - 1) * (int)(roomBasePrice * 0.10);
+        } else if (roomType == 2 || roomType == 4 || roomType == 6 && guests > 1) {
+            guestAddCharge = (guests - 2) * (int)(roomBasePrice * 0.10);
+        }
+        return guestAddCharge;
+    }
     // -------------------------------- DISPLAY Booking summ--------------------------------------
-    private static void displaySelection(int roomType, int roomSize, int nights, int guests) {
-        String roomTypeName, roomSizeName;
+    private static void displaySelection(int roomType, int nights, int guests) {
+        String roomTypeName, Name;
         switch (roomType) {
             case 1:
                 roomTypeName = "Standard";
+                Name = "Single Occupancy";
                 break;
             case 2:
-                roomTypeName = "Deluxe";
+                roomTypeName = "Standard";
+                Name = "Double Occupancy";
                 break;
             case 3:
+                roomTypeName = "Deluxe";
+                Name = "Single Occupancy";
+                break;
+            case 4:
+                roomTypeName = "Deluxe";
+                Name = "Double Occupancy";
+                break;
+            case 5:
                 roomTypeName = "Suite";
+                Name = "Single Occupancy";
+                break;
+            case 6:
+                roomTypeName = "Suite";
+                Name = "Double Occupancy";
                 break;
             default:
                 roomTypeName = "";
+                Name = "";
                 break;
         }
-        switch (roomSize) {
-            case 1:
-                roomSizeName = "Single Occupancy";
-                break;
-            case 2:
-                roomSizeName = "Double Occupancy";
-                break;
-            default:
-                roomSizeName = "";
-                break;
-        }
-        float totalPrice = finalCompute(roomType, roomSize, nights, guests);
+        int roomBasePrice = roomBasePriceSelect(roomType);
+        float totalPrice = finalCompute(roomType, nights, guests, roomBasePrice);
         System.out.println(Green + "++==================================================++" + Reset);
         System.out.println(Green + "||                                                  ||" + Reset);
         System.out.println(Green + "||" + Reset + "                 " + Bold + "Booking Summary" + Reset + "                  " + Green + "||" + Reset);
@@ -450,7 +415,7 @@ public class HotelBilly {
         System.out.println(Green + "++==================================================++" + Reset);
         System.out.println(Green + "||                                                  ||" + Reset);
         System.out.println(String.format( Green + "||" + Reset + "   ROOM TYPE        : %-28s" + Green +   "||" + Reset,roomTypeName));
-        System.out.println(String.format( Green + "||" + Reset + "   OCCUPANCY SIZE   : %-28s" + Green +  "||" + Reset, roomSizeName));
+        System.out.println(String.format( Green + "||" + Reset + "   OCCUPANCY SIZE   : %-28s" + Green +  "||" + Reset, Name));
         System.out.println(String.format( Green + "||" + Reset + "   GUESTS           : %-28d" + Green +  "||" + Reset, guests));
         System.out.println(String.format( Green + "||" + Reset + "   NUMBER OF NIGHTS : %-28d" +Green +  "||" + Reset, nights));
         System.out.println(String.format( Green + "||" + Reset + "   Total Bill       : %-28.2f" + Green + "||" + Reset, totalPrice));
@@ -458,78 +423,66 @@ public class HotelBilly {
         System.out.println(Green + "++==================================================++" + Reset);
     }
     // -------------------------------- DISPLAY receipt --------------------------------------
-    private static void displayReceipt (int roomType, int roomSize, int nights, int guests) {
-            String roomTypeName, roomSizeName;
-            switch (roomType) {
-                case 1:
-                    roomTypeName = "Standard";
-                    break;
-                case 2:
-                    roomTypeName = "Deluxe";
-                    break;
-                case 3:
-                    roomTypeName = "Suite";
-                    break;
-                default:
-                    roomTypeName = "";
-                    break;
-            }
-            switch (roomSize) {
-                case 1:
-                    roomSizeName = "Single Occupancy";
-                    break;
-                case 2:
-                    roomSizeName = "Double Occupancy";
-                    break;
-                default:
-                    roomSizeName = "";
-                    break;
-            }
-            //computation copy ng comp used ternary
-            int roomBasePrice = 0, guestAddCharge = 0;
-            switch (roomType) {
-                case 1:
-                    roomBasePrice = roomSize == 1 ? 1800 : 2700;
-                    break;
-                case 2:
-                    roomBasePrice = roomSize == 1 ? 2300 : 3200;
-                    break;
-                case 3:
-                    roomBasePrice = roomSize == 1 ? 3000 : 4000;
-                    break;
-            }
-            if (roomSize == 1) {
-                guestAddCharge = (guests - 1) * (int) (roomBasePrice * 0.10);
-            } else if (roomSize == 2 && guests > 2) {
-                guestAddCharge = (guests - 2) * (int) (roomBasePrice * 0.10);
-            }
-            int initialPrice = roomBasePrice * nights;
-            int guestChargeTotal = guestAddCharge * nights;
-            float total = initialPrice + guestChargeTotal;
-            float discount = nights > 3 ? total * 0.15f : 0;
-            total -= discount;
-            float tax = total * 0.12f;
-            total += tax;
-            System.out.println(Green + "++==================================================++" + Reset);
-            System.out.println(Green + "||                                                  ||" + Reset);
-            System.out.println(Green + "||" + Reset + "                 " + Bold + "Booking Receipt" + Reset + "                  " + Green + "||" + Reset);
-            System.out.println(Green + "||                                                  ||" + Reset);
-            System.out.println(Green + "++==================================================++" + Reset);
-            System.out.println(Green + "||                                                  ||" + Reset);
-            System.out.println(String.format(Green + "||" + Reset + "   ROOM TYPE        : %-28s" + Green + "||" + Reset, roomTypeName));
-            System.out.println(String.format(Green + "||" + Reset + "   OCCUPANCY SIZE   : %-28s" + Green + "||" + Reset, roomSizeName));
-            System.out.println(String.format(Green + "||" + Reset + "   GUESTS           : %-28d" + Green + "||" + Reset, guests));
-            System.out.println(String.format(Green + "||" + Reset + "   NUMBER OF NIGHTS : %-28d" + Green + "||" + Reset, nights));
-            System.out.println(String.format(Green + "||" + Reset + "   ROOM BASE PRICE  : %-28d" + Green + "||" + Reset, roomBasePrice));
-            System.out.println(String.format(Green + "||" + Reset + "   INITIAL PRICE    : %-28d" + Green + "||" + Reset, initialPrice));
-            System.out.println(String.format(Green + "||" + Reset + "   GUEST CHARGE     : %-22d" + Green + "      ||" + Reset, guestChargeTotal));
-            System.out.println(String.format(Green + "||" + Reset + "   NIGHT DISCOUNT   : %-28.2f" + Green + "||" + Reset, discount));
-            System.out.println(String.format(Green + "||" + Reset + "   TAX (12%%)        : %-28.2f" + Green + "||" + Reset, tax));
-            System.out.println(String.format(Green + "||" + Reset + "   TOTAL BILL       : %-28.2f" + Green + "||" + Reset, total));
-            System.out.println(Green + "||                                                  ||" + Reset);
-            System.out.println(Green + "++==================================================++" + Reset);
+    private static void displayReceipt(int roomType, int nights, int guests, int roomBasePrice) {
+        String roomTypeName, Name;
+        switch (roomType) {
+            case 1:
+                roomTypeName = "Standard";
+                Name = "Single Occupancy";
+                break;
+            case 2:
+                roomTypeName = "Standard";
+                Name = "Double Occupancy";
+                break;
+            case 3:
+                roomTypeName = "Deluxe";
+                Name = "Single Occupancy";
+                break;
+            case 4:
+                roomTypeName = "Deluxe";
+                Name = "Double Occupancy";
+                break;
+            case 5:
+                roomTypeName = "Suite";
+                Name = "Single Occupancy";
+                break;
+            case 6:
+                roomTypeName = "Suite";
+                Name = "Double Occupancy";
+                break;
+            default:
+                roomTypeName = "";
+                Name = "";
+                break;
+        }
+        int initialPrice = roomBasePrice * nights;
+        int guestAddCharge = guestAddChargeComp(roomType, guests, roomBasePrice);
+        int guestChargeTotal = guestAddCharge * nights;
+        float total = initialPrice + guestChargeTotal;
+        float discount = nights > 3 ? total * 0.15f : 0;
+        total -= discount;
+        float tax = total * 0.12f;
+        total += tax;
+        System.out.println(Green + "++==================================================++" + Reset);
+        System.out.println(Green + "||                                                  ||" + Reset);
+        System.out.println(Green + "||" + Reset + "                 " + Bold + "Booking Receipt" + Reset + "                  " + Green + "||" + Reset);
+        System.out.println(Green + "||                                                  ||" + Reset);
+        System.out.println(Green + "++==================================================++" + Reset);
+        System.out.println(Green + "||                                                  ||" + Reset);
+        System.out.println(String.format(Green + "||" + Reset + "   ROOM TYPE        : %-28s" + Green + "||" + Reset, roomTypeName));
+        System.out.println(String.format(Green + "||" + Reset + "   OCCUPANCY SIZE   : %-28s" + Green + "||" + Reset, Name));
+        System.out.println(String.format(Green + "||" + Reset + "   GUESTS           : %-28d" + Green + "||" + Reset, guests));
+        System.out.println(String.format(Green + "||" + Reset + "   NUMBER OF NIGHTS : %-28d" + Green + "||" + Reset, nights));
+        System.out.println(String.format(Green + "||" + Reset + "   ROOM BASE PRICE  : %-28d" + Green + "||" + Reset, roomBasePrice));
+        System.out.println(String.format(Green + "||" + Reset + "   INITIAL PRICE    : %-28d" + Green + "||" + Reset, initialPrice));
+        System.out.println(String.format(Green + "||" + Reset + "   GUEST CHARGE     : %-22d" + Green + "      ||" + Reset, guestChargeTotal));
+        System.out.println(String.format(Green + "||" + Reset + "   NIGHT DISCOUNT   : %-28.2f" + Green + "||" + Reset, discount));
+        System.out.println(String.format(Green + "||" + Reset + "   TAX (12%%)        : %-28.2f" + Green + "||" + Reset, tax));
+        System.out.println(String.format(Green + "||" + Reset + "   TOTAL BILL       : %-28.2f" + Green + "||" + Reset, total));
+        System.out.println(Green + "||                                                  ||" + Reset);
+        System.out.println(Green + "++==================================================++" + Reset);
     }
-    private static void checkout(int roomType, int roomSize, int nights, int guests, Scanner input) {
+    private static void checkout(int roomType, int nights, int guests, Scanner input) {
         String name, email;
         int age;
         long contact;
@@ -611,8 +564,9 @@ public class HotelBilly {
         System.out.println(String.format(Green + "||" + Reset + "  Email      : %-35s" + Green + "||" + Reset, email));
         System.out.println(String.format(Green + "||" + Reset + "  Contact No.: %-35s" + Green + "||" + Reset, contact));
         System.out.println(Green + "||                                                  ||" + Reset);
-        displayReceipt(roomType, roomSize, nights, guests);
-        //displaySelection(roomType, roomSize, nights, guests);
+        int roomBasePrice = roomBasePriceSelect(roomType);
+        displayReceipt(roomType, nights, guests, roomBasePrice);
+        //displaySelection(roomType, , nights, guests);
         while (true) {
             System.out.println(Green + "++==================================================++" + Reset);
             System.out.println(Green + "||                                                  ||" + Reset);
