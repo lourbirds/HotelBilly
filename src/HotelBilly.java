@@ -444,7 +444,7 @@ public class HotelBilly {
     }
     // -------------------------------- DISPLAY receipt --------------------------------------
     private static void displayReceipt(int roomType, int nights, int guests, int roomBasePrice) {
-        String roomTypeName, Name;
+        String roomTypeName, Name, receipt;
         switch (roomType) {
             case 1:
                 roomTypeName = "Standard";
@@ -483,27 +483,30 @@ public class HotelBilly {
         total -= discount;
         float tax = total * 0.12f;
         total += tax;
-        System.out.println(Green + "++==================================================++" + Reset);
-        System.out.println(Green + "||                                                  ||" + Reset);
-        System.out.println(Green + "||" + Reset + "                 " + Bold + "Booking Receipt" + Reset + "                  " + Green + "||" + Reset);
-        System.out.println(Green + "||                                                  ||" + Reset);
-        System.out.println(Green + "++==================================================++" + Reset);
-        System.out.println(Green + "||                                                  ||" + Reset);
-        System.out.println(String.format(Green + "||" + Reset + "   ROOM TYPE        : %-28s" + Green + "||" + Reset, roomTypeName));
-        System.out.println(String.format(Green + "||" + Reset + "   OCCUPANCY SIZE   : %-28s" + Green + "||" + Reset, Name));
-        System.out.println(String.format(Green + "||" + Reset + "   GUESTS           : %-28d" + Green + "||" + Reset, guests));
-        System.out.println(String.format(Green + "||" + Reset + "   NUMBER OF NIGHTS : %-28d" + Green + "||" + Reset, nights));
-        System.out.println(String.format(Green + "||" + Reset + "   ROOM BASE PRICE  : %-28d" + Green + "||" + Reset, roomBasePrice));
-        System.out.println(String.format(Green + "||" + Reset + "   INITIAL PRICE    : %-28d" + Green + "||" + Reset, initialPrice));
-        System.out.println(String.format(Green + "||" + Reset + "   GUEST CHARGE     : %-22d" + Green + "      ||" + Reset, guestChargeTotal));
-        System.out.println(String.format(Green + "||" + Reset + "   NIGHT DISCOUNT   : %-28.2f" + Green + "||" + Reset, discount));
-        System.out.println(String.format(Green + "||" + Reset + "   TAX (12%%)        : %-28.2f" + Green + "||" + Reset, tax));
-        System.out.println(String.format(Green + "||" + Reset + "   TOTAL BILL       : %-28.2f" + Green + "||" + Reset, total));
-        System.out.println(Green + "||                                                  ||" + Reset);
-        System.out.println(Green + "++==================================================++" + Reset);
+        receipt = Green + "++==================================================++\n"
+                + "||                                                  ||\n"
+                + "||" + Reset + "                 " + Bold + "Booking Receipt" + Reset + "                  " + Green + "||\n"
+                + "||                                                  ||\n"
+                + "++==================================================++\n"
+                + "||                                                  ||\n"
+                + String.format("||" + Reset + "   ROOM TYPE        : %-28s" + Green + "||\n", roomTypeName)
+                + String.format("||" + Reset + "   OCCUPANCY SIZE   : %-28s" + Green + "||\n", Name)
+                + String.format("||" + Reset + "   GUESTS           : %-28d" + Green + "||\n", guests)
+                + String.format("||" + Reset + "   NUMBER OF NIGHTS : %-28d" + Green + "||\n", nights)
+                + String.format("||" + Reset + "   ROOM BASE PRICE  : %-28d" + Green + "||\n", roomBasePrice)
+                + String.format("||" + Reset + "   INITIAL PRICE    : %-28d" + Green + "||\n", initialPrice)
+                + String.format("||" + Reset + "   GUEST CHARGE     : %-22d" + Green + "      ||\n", guestChargeTotal)
+                + String.format("||" + Reset + "   NIGHT DISCOUNT   : %-28.2f" + Green + "||\n", discount)
+                + String.format("||" + Reset + "   TAX (12%%)        : %-28.2f" + Green + "||\n", tax)
+                + String.format("||" + Reset + "   TOTAL BILL       : %-28.2f" + Green + "||\n", total)
+                + "||                                                  ||\n"
+                + "++==================================================++\n";
+
+        System.out.println(receipt);
     }
     private static void checkout(int roomType, int nights, int guests, Scanner input) {
         String name, email;
+        String customerInfo;
         int age;
         long contact;
         input.nextLine();
@@ -568,22 +571,23 @@ public class HotelBilly {
         }
         System.out.print("     Enter your Email: ");
         email = input.nextLine();
-        System.out.println(Green + "++==================================================++" + Reset);  
-        System.out.println();
-        System.out.println();
-        System.out.println(Green + "++==================================================++" + Reset);
-        System.out.println(Green + "||                                                  ||" + Reset);
-        System.out.println(Green + "||" + Reset + "                 " + Bold + "Summary Details" + Reset + "                  " + Green + "||" + Reset);
-        System.out.println(Green + "||                                                  ||" + Reset);
-        System.out.println(Green + "++==================================================++" + Reset);
-        System.out.println(Green + "||" + Reset + "                " + Bold + "Customer Information " + Reset + "             " + Green + "||" + Reset);
-        System.out.println(Green + "++==================================================++" + Reset);
-        System.out.println(Green + "||                                                  ||" + Reset);
-        System.out.println(String.format(Green + "||" + Reset + "  Name       : %-35s" + Green + "||" + Reset, name));
-        System.out.println(String.format(Green + "||" + Reset + "  Age        : %-35s" + Green + "||" + Reset, age + " year old"));
-        System.out.println(String.format(Green + "||" + Reset + "  Email      : %-35s" + Green + "||" + Reset, email));
-        System.out.println(String.format(Green + "||" + Reset + "  Contact No.: %-35s" + Green + "||" + Reset, contact));
-        System.out.println(Green + "||                                                  ||" + Reset);
+        customerInfo = Green + "++==================================================++\n"
+                + "\n"
+                + "\n"
+                + "++==================================================++\n"
+                + "||                                                  ||\n"
+                + "||" + Reset + "                 " + Bold + "Summary Details" + Reset + "                  " + Green + "||\n"
+                + "||                                                  ||\n"
+                + "++==================================================++\n"
+                + "||" + Reset + "                " + Bold + "Customer Information " + Reset + "             " + Green + "||\n"
+                + "++==================================================++\n"
+                + "||                                                  ||\n"
+                + String.format("||" + Reset + "  Name       : %-35s" + Green + "||\n", name)
+                + String.format("||" + Reset + "  Age        : %-35s" + Green + "||\n", age + " year old")
+                + String.format("||" + Reset + "  Email      : %-35s" + Green + "||\n", email)
+                + String.format("||" + Reset + "  Contact No.: %-35s" + Green + "||\n", contact)
+                + "||                                                  ||";
+        System.out.println(customerInfo);
         int roomBasePrice = roomBasePriceSelect(roomType);
         displayReceipt(roomType, nights, guests, roomBasePrice);
         //displaySelection(roomType, , nights, guests);
