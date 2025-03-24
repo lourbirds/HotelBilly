@@ -1,5 +1,9 @@
 import java.util.Scanner;
+import java.io.File;
+import java.io.IOException;
+
 public class HotelBilly {
+    
     //design tools
 	public static final String Reset     = "\033[0m";
 	public static final String Black     = "\033[30m";//nig
@@ -16,6 +20,22 @@ public class HotelBilly {
 	public static final String Underline = "\033[4m";
 	public static final String Invert    = "\033[7m"; //highlight
     public static void main(String[] args) {
+        //FILE HANDLING METHOD
+        File txtFile = new File( "./transaction_history.txt"); 
+        if(!txtFile.exists()){
+            try{
+                if(txtFile.createNewFile()){
+                    System.out.println("               File has been created");
+                }else {
+                    System.out.println("               Failed to create");
+                }
+            }catch(IOException e) {
+                System.out.println("           An error occurred while creating the file.");
+                e.printStackTrace();
+            }
+        } else {
+        System.out.println("                File Already exist");}
+
         String term = System.getenv("TERM");
         if (term == null || !term.contains("color")) {
             System.out.println("------------------------------------------------------");
