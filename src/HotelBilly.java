@@ -2,12 +2,13 @@ import java.util.Scanner;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class HotelBilly {
     
     //design tools
 	public static final String Reset     = "\033[0m";
-	public static final String Black     = "\033[30m";//nig
+	public static final String Black     = "\033[30m"; //
 	public static final String Red       = "\033[31m"; //error
 	public static final String Green     = "\033[32m"; //barrier
 	public static final String Yellow    = "\033[33m"; //
@@ -20,6 +21,11 @@ public class HotelBilly {
 	public static final String Italic    = "\033[3m";
 	public static final String Underline = "\033[4m";
 	public static final String Invert    = "\033[7m"; //highlight
+
+    static ArrayList <String> nameList = new ArrayList <String>();
+    static ArrayList <Integer> ageList = new ArrayList <String>();
+    static ArrayList <String> emailList = new ArrayList <String>();
+    static ArrayList <Long> contactList = new ArrayList <String>();
 
     public static void main(String[] args) {
         //FILE HANDLING METHOD
