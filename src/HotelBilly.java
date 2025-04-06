@@ -22,11 +22,6 @@ public class HotelBilly {
 	public static final String Underline = "\033[4m";
 	public static final String Invert    = "\033[7m"; //highlight
 
-    static ArrayList <String> nameList = new ArrayList <String>();
-    static ArrayList <Integer> ageList = new ArrayList <String>();
-    static ArrayList <String> emailList = new ArrayList <String>();
-    static ArrayList <Long> contactList = new ArrayList <String>();
-
     public static void main(String[] args) {
         //FILE HANDLING METHOD
         File txtFile = new File( "./transaction_history.txt"); 
