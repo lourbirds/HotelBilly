@@ -6,22 +6,21 @@ import java.io.IOException;
 import java.util.InputMismatchException;
 
 public class HotelBilly {
-    
     // Color Codes
-	public static final String Reset     = "\033[0m";
+    public static final String Reset     = "\033[0m";
     // public static final String Black     = "\033[30m";
-	public static final String Red       = "\033[31m";
-	public static final String Green     = "\033[32m";
-	public static final String Yellow    = "\033[33m";
-	// public static final String Blue      = "\033[34m";
-	public static final String Magenta   = "\033[35m";
-	public static final String Cyan      = "\033[36m";
-	public static final String Gray      = "\033[37m";
-	public static final String White     = "\033[97m";
-	public static final String Bold      = "\033[1m";
-	public static final String Italic    = "\033[3m";
+    public static final String Red       = "\033[31m";
+    public static final String Green     = "\033[32m";
+    public static final String Yellow    = "\033[33m";
+    // public static final String Blue      = "\033[34m";
+    public static final String Magenta   = "\033[35m";
+    public static final String Cyan      = "\033[36m";
+    public static final String Gray      = "\033[37m";
+    public static final String White     = "\033[97m";
+    public static final String Bold      = "\033[1m";
+    public static final String Italic    = "\033[3m";
     // public static final String Underline = "\033[4m";
-	public static final String Invert    = "\033[7m";
+    public static final String Invert    = "\033[7m";
 
     public static void main(String[] args) {
         int userChoice;
