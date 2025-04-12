@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.InputMismatchException;
+import java.util.Random;
 
 public class HotelBilly {
     // Color Codes
@@ -28,6 +29,8 @@ public class HotelBilly {
         ArrayList <String> transactionsReceipt =new ArrayList<String>();
         ArrayList <String> customerInformations =new ArrayList<String>(); 
         ArrayList <String> names =new ArrayList<String>(); 
+        ArrayList <String> transNum =new ArrayList<String>();
+        
         // Check if there is a transaction_history file
         // If yes, do nothing
         // If no, create it
@@ -79,6 +82,7 @@ public class HotelBilly {
             System.out.println(Green + "||    " + Reset + "Would you like to Book a night or Exit?" + Reset + Green + "       ||" + Reset);
             System.out.println(Green + "||    " + Reset + Magenta + "[1]" + Reset + Gray + "   Book a night" + Reset + Green + "                            ||" + Reset);
             System.out.println(Green + "||    " + Reset + Magenta + "[2]" + Reset + Gray + "   View transactions by name" + Reset + Green + "               ||" + Reset);
+            System.out.println(Green + "||    " + Reset + Magenta + "[3]" + Reset + Gray + "   View transactions by transaction number" + Reset + Green + " ||" + Reset);
             System.out.println(Green + "||    " + Reset + Magenta + "[0]" + Reset + Gray + "   Exit" + Reset + Green + "                                    ||" + Reset);
             System.out.println(Green + "||                                                  ||" + Reset);
             System.out.println(Green + "++==================================================++" + Reset);
@@ -92,12 +96,17 @@ public class HotelBilly {
                 switch (userChoice) {
                     case 1:
                         System.out.println();
-                        displayOptions(input, transactionsReceipt,  customerInformations, names); // Where everything happens
+                        displayOptions(input, transactionsReceipt,  customerInformations, names, transNum); // Where everything happens
                         break;
                     case 2:
                         System.out.println();
                         input.nextLine();
                         viewTransByName(names, customerInformations, transactionsReceipt, input);
+                        break;
+                    case 3:
+                        System.out.println();
+                        input.nextLine();
+                        viewTransByTransactionNum(transNum, names, customerInformations, transactionsReceipt, input);
                         break;
                     case 0:
                         System.out.println();
@@ -116,7 +125,40 @@ public class HotelBilly {
         }
     }
 
-    // Print welcome message
+   
+
+	private static void viewTransByTransactionNum(ArrayList<String> transNum, ArrayList<String> names,
+			ArrayList<String> customerInformations, ArrayList<String> transactionsReceipt, Scanner input) {
+		 
+        if (transNum.isEmpty()) {
+                System.out.println(Green + "++==================================================++" + Reset);
+                System.out.println(Green + "||" + Reset + "           No transactions found in records.       " + Green + "||" + Reset);
+                System.out.println(Green + "++==================================================++" + Reset);
+                return;
+            }   
+                    System.out.print("     Enter transaction number to view     : ");
+                    String searchTransNum = input.nextLine();
+                    System.out.println(Green + "O----------------------------------------------------O" + Reset);
+                    System.out.println();
+                    
+                for (int i = 0; i < transNum.size(); i++) {
+                	//if (searchTransNum.equalsIgnoreCase(transNum.get(i))) {
+                	if (transNum.get(i).equals(searchTransNum)) {
+                        //found = true;
+                        System.out.println(Cyan + "++==================================================++" + Reset);
+                        System.out.println(Cyan + "||" + Reset + Bold + "               Transaction #" + (i+1) + "                     " + Cyan+ "||" + Reset);
+                        System.out.println(Cyan + "++==================================================++" + Reset);
+                        System.out.println(customerInformations.get(i));
+                        System.out.println(transactionsReceipt.get(i));
+                        return;
+                    }
+                }
+		
+	}
+
+
+
+	// Print welcome message
     private static void welcome() {
         System.out.println(Bold + "                     HOTEL DE LUNA               " + Reset);
         System.out.println("   In this Hotel, we have different types of rooms to ");
@@ -167,7 +209,7 @@ public class HotelBilly {
     }
 
     // The 5 main stages of the program
-    private static void displayOptions(Scanner input, ArrayList <String> transactionsReceipt, ArrayList <String> customerInformations, ArrayList <String> names) {
+    private static void displayOptions(Scanner input, ArrayList <String> transactionsReceipt, ArrayList <String> customerInformations, ArrayList <String> names, ArrayList<String> transNum) {
         ArrayList<String> RoomType = new ArrayList<>();
         ArrayList<String> RoomOcc = new ArrayList<>();
         ArrayList<Integer> GuestCount = new ArrayList<>();
@@ -179,7 +221,7 @@ public class HotelBilly {
 
         displaySelection(RoomType.getLast(), RoomOcc.getLast(), NightCount.getLast(), GuestCount.getLast()); // Fourth Stage
 
-        checkout(RoomType.getLast(), RoomOcc.getLast(), NightCount.getLast(), GuestCount.getLast(), input, transactionsReceipt,  customerInformations, names); // Fifth Stage
+        checkout(RoomType.getLast(), RoomOcc.getLast(), NightCount.getLast(), GuestCount.getLast(), input, transactionsReceipt,  customerInformations, names, transNum); // Fifth Stage
     }
 
     // In: Scanner
@@ -558,10 +600,11 @@ public class HotelBilly {
     // In: Room Type, number of Nights, number of Guests, Scanner
     // Out: void (Gets the user information, and then prints it)
   
-    private static void checkout(String RoomType, String RoomOcc, int NightCount, int GuestCount, Scanner input,ArrayList <String> transactionsReceipt, ArrayList <String> customerInformations, ArrayList <String> names) {
+    private static void checkout(String RoomType, String RoomOcc, int NightCount, int GuestCount, Scanner input,ArrayList <String> transactionsReceipt, ArrayList <String> customerInformations, ArrayList <String> names, ArrayList<String> transNum) {
         final int roomBasePrice = roomBasePriceSelect(RoomType, RoomOcc);
         String name, email, customerInfo, contactLength;
         int age;
+        int idNum;
         long contact;
 
         System.out.println();
@@ -573,6 +616,11 @@ public class HotelBilly {
         System.out.println(Green + "------------------------------------------------------" + Reset);
         System.out.println();
 
+        Random transactionId = new Random();
+        idNum = 100000000 + transactionId.nextInt(900000000);
+        System.out.println("Transaction Number: " + idNum);
+        transNum.add(String.valueOf(idNum));
+        
         System.out.print("     Enter your Name: "); //No possible errors
         name = input.nextLine();
         names.add(name);
