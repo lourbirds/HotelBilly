@@ -25,7 +25,9 @@ public class HotelBilly {
     public static void main(String[] args) {
         int userChoice;
         Scanner input = new Scanner(System.in);
-
+        ArrayList <String> transactionsReceipt =new ArrayList<String>();
+        ArrayList <String> customerInformations =new ArrayList<String>(); 
+        ArrayList <String> names =new ArrayList<String>(); 
         // Check if there is a transaction_history file
         // If yes, do nothing
         // If no, create it
@@ -90,11 +92,11 @@ public class HotelBilly {
                 switch (userChoice) {
                     case 1:
                         System.out.println();
-                        displayOptions(input); // Where everything happens
+                        displayOptions(input, transactionsReceipt,  customerInformations, names); // Where everything happens
                         break;
                     case 2:
                         System.out.println();
-                    input.nextLine();
+                        input.nextLine();
                         viewTransByName(names, customerInformations, transactionsReceipt, input);
                         break;
                     case 0:
@@ -165,7 +167,7 @@ public class HotelBilly {
     }
 
     // The 5 main stages of the program
-    private static void displayOptions(Scanner input) {
+    private static void displayOptions(Scanner input, ArrayList <String> transactionsReceipt, ArrayList <String> customerInformations, ArrayList <String> names) {
         ArrayList<String> RoomType = new ArrayList<>();
         ArrayList<String> RoomOcc = new ArrayList<>();
         ArrayList<Integer> GuestCount = new ArrayList<>();
@@ -177,7 +179,7 @@ public class HotelBilly {
 
         displaySelection(RoomType.getLast(), RoomOcc.getLast(), NightCount.getLast(), GuestCount.getLast()); // Fourth Stage
 
-        checkout(RoomType.getLast(), RoomOcc.getLast(), NightCount.getLast(), GuestCount.getLast(), input); // Fifth Stage
+        checkout(RoomType.getLast(), RoomOcc.getLast(), NightCount.getLast(), GuestCount.getLast(), input, transactionsReceipt,  customerInformations, names); // Fifth Stage
     }
 
     // In: Scanner
@@ -465,8 +467,8 @@ public class HotelBilly {
 
     // In: Room Type, number of Nights, number of Guests, Base Price of the Room
     // Out: void (Prints the receipt)
-    static ArrayList <String> transactionsReceipt =new ArrayList<String>();
-    private static void displayReceipt(String RoomType, String RoomOcc, int NightCount, int GuestCount, int roomBasePrice) {
+    
+    private static void displayReceipt(String RoomType, String RoomOcc, int NightCount, int GuestCount, int roomBasePrice,ArrayList <String> transactionsReceipt) {
         String receipt;
         final int initialPrice = roomBasePrice * NightCount;
         final int guestAddCharge = guestAddChargeComp(RoomType, RoomOcc, GuestCount, roomBasePrice);
@@ -522,55 +524,41 @@ public class HotelBilly {
     ArrayList<String> transactionsReceipt, Scanner input){
         
         if (names.isEmpty()) {
-                System.out.println(Green + "||" + Reset + "           No transactions found in records.         " + Green + "||" + Reset);
                 System.out.println(Green + "++==================================================++" + Reset);
-                return;//CUT LOOPING
-            }
-            while(true){    
-                try {
-                    System.out.print("     Enter name to view (or 'exit' to return): ");
+                System.out.println(Green + "||" + Reset + "           No transactions found in records.       " + Green + "||" + Reset);
+                System.out.println(Green + "++==================================================++" + Reset);
+                return;
+            }   
+                    System.out.print("     Enter name to view     : ");
                     String searchName = input.nextLine();
+                    System.out.println(Green + "O----------------------------------------------------O" + Reset);
+                    System.out.println();
                     
-                    if (searchName.equalsIgnoreCase("exit")) {
-                        return;
-                    }
-                
-                
-                boolean found = false;
                 for (int i = 0; i < names.size(); i++) {
                     if (searchName.equalsIgnoreCase(names.get(i))) {
-                        found = true;
-                        System.out.println(Green + "++==================================================++" + Reset);
-                        System.out.println(Green + "||" + Reset + Bold + "               Transaction #" + (i+1) + "                 " + Green + "||" + Reset);
-                        System.out.println(Green + "++==================================================++" + Reset);
+                        //found = true;
+                        System.out.println(Cyan + "++==================================================++" + Reset);
+                        System.out.println(Cyan + "||" + Reset + Bold + "               Transaction #" + (i+1) + "                     " + Cyan+ "||" + Reset);
+                        System.out.println(Cyan + "++==================================================++" + Reset);
                         System.out.println(customerInformations.get(i));
                         System.out.println(transactionsReceipt.get(i));
-                        System.out.println(Green + "++==================================================++" + Reset);
+                        return;
                     }
                 }
                 
-                if (found==false) {
-                    System.out.println(Green + "++==================================================++" + Reset);
-                    System.out.println(Green + "||" + Reset + "     No transactions found for: " + searchName + "     " + Green + "||" + Reset);
-                    System.out.println(Green + "++==================================================++" + Reset);
-                }
-            }catch (Exception e) {
-                System.out.println(Green + "++==================================================++" + Reset);
-                System.out.println(Green + "||" + Reset + Red + Bold + "  An error occurred: " + e.getMessage() + Reset + Green + "  ||" + Reset);
-                System.out.println(Green + "++==================================================++" + Reset);
-                input.nextLine(); // Clear buffer in case of error
-            }
-        }
+               
+                System.out.println(Yellow + Bold + "------------------------------------------------------" + Reset);
+                
+                System.out.println(Bold +"      No transactions found for: " +Reset + searchName );
+                System.out.println(Yellow + Bold + "------------------------------------------------------" + Reset);
+                
     }
 
 
-
-       
     // In: Room Type, number of Nights, number of Guests, Scanner
     // Out: void (Gets the user information, and then prints it)
-    static ArrayList <String> customerInformations =new ArrayList<String>(); 
-    static ArrayList <String> names =new ArrayList<String>(); 
-    private static void checkout(String RoomType, String RoomOcc, int NightCount, int GuestCount, Scanner input) {
+  
+    private static void checkout(String RoomType, String RoomOcc, int NightCount, int GuestCount, Scanner input,ArrayList <String> transactionsReceipt, ArrayList <String> customerInformations, ArrayList <String> names) {
         final int roomBasePrice = roomBasePriceSelect(RoomType, RoomOcc);
         String name, email, customerInfo, contactLength;
         int age;
@@ -645,7 +633,7 @@ public class HotelBilly {
                 + "||                                                  ||";
         customerInformations.add(customerInfo);
         System.out.println(customerInfo);
-        displayReceipt(RoomType, RoomOcc, NightCount, GuestCount, roomBasePrice);
+        displayReceipt(RoomType, RoomOcc, NightCount, GuestCount, roomBasePrice, transactionsReceipt);
 
         while (true) {
             System.out.println(Green + "++==================================================++" + Reset);
