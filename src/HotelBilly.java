@@ -30,7 +30,6 @@ public class HotelBilly {
         ArrayList <String> customerInformations =new ArrayList<String>(); 
         ArrayList <String> names =new ArrayList<String>(); 
         ArrayList <String> transNum =new ArrayList<String>();
-        
         // Check if there is a transaction_history file
         // If yes, do nothing
         // If no, create it
@@ -125,7 +124,7 @@ public class HotelBilly {
         }
     }
 
-   
+
 
 	private static void viewTransByTransactionNum(ArrayList<String> transNum, ArrayList<String> names,
 			ArrayList<String> customerInformations, ArrayList<String> transactionsReceipt, Scanner input) {
@@ -140,7 +139,6 @@ public class HotelBilly {
                     String searchTransNum = input.nextLine();
                     System.out.println(Green + "O----------------------------------------------------O" + Reset);
                     System.out.println();
-                    
                 for (int i = 0; i < transNum.size(); i++) {
                 	//if (searchTransNum.equalsIgnoreCase(transNum.get(i))) {
                 	if (transNum.get(i).equals(searchTransNum)) {
@@ -159,6 +157,127 @@ public class HotelBilly {
 
 
 	// Print welcome message
+    // Also, am thinking, necessary ba na may login? Parang naalala ko lang na sinabi ni mam sa room na 
+    //   Ang Admin and User ay iisa or something like that
+    // Tho if proceed, ganto naisip ko na itsura
+    // At the moment alang like Login talaga na may username and password sa admin tho,
+    //   so it is not "Login as Admin" but "Proceed" lang din
+
+    // Also Comments sa ano, transaction viewing kakacheck ko lang but baka mali yon,
+    // Ang ineexpect ata ni mam don is puro names lang ang lilitaw, not the whole transaction
+    // Sana mabasa to :<
+
+    // NOT USED
+    //Login Screen
+    //Inside the View Transactions Options: All Viewing types
+    private static void displayLoginScreen() {
+        while (true) {
+            int userChoice;
+            Scanner input = new Scanner(System.in);
+            System.out.println();
+            System.out.println(Green + "++==================================================++" + Reset);
+            System.out.println(Green + "||             " + Reset + Bold + Yellow + "Welcome to Hotel De Luna" + Reset + Green + "             ||" + Reset);
+            System.out.println(Green + "||                                                  ||" + Reset);
+            System.out.println(Green + "||    " + Reset + "Choose how you want to proceed?" + Reset + Green + "               ||" + Reset);
+            System.out.println(Green + "||    " + Reset + Magenta + "[1]" + Reset + Gray + "   Proceed as Customer" + Reset + Green + "                     ||" + Reset);
+            System.out.println(Green + "||    " + Reset + Magenta + "[2]" + Reset + Gray + "   Login as Admin" + Reset + Green + "                          ||" + Reset);
+            System.out.println(Green + "||    " + Reset + Magenta + "[0]" + Reset + Gray + "   Exit" + Reset + Green + "                                    ||" + Reset);
+            System.out.println(Green + "||                                                  ||" + Reset);
+            System.out.println(Green + "++==================================================++" + Reset);
+            System.out.println(Italic + Gray + "           Please select an option (0 - 2)           " + Reset);
+            System.out.println(Green + "O----------------------------------------------------O" + Reset);
+            System.out.print("          Input Number Here: ");
+            try {
+                userChoice = input.nextInt();
+                input.nextLine();
+                switch (userChoice) {
+                    case 1:
+                        displayCustomerScreen();
+                        //If ever, gawing method yung nasa main method tas dito lalagay
+                        break;
+                    case 2:
+                        displayAdminScreen();
+                        //Dito naman is another Sceen
+                        break;
+                    case 0:
+                        System.out.println();
+                        System.out.println(Invert + Bold + Red + " - - - - - - - :   EXITING PROGRAM..  : - - - - - - - " + Reset);
+                        System.out.println();
+                        System.exit(0);
+                        break;
+                    default:
+                        errorRangetxt();
+                        break;
+                }
+            } catch (InputMismatchException e) {
+                errorTypetxt();
+                input.next();
+            }
+        }
+    }
+
+    // NOT USED
+    private static void displayAdminScreen() {
+        //Pretty much same lang nung nasa displayCustomerScreen pero iba yung nasa options,
+        //Instead of book a night, View Transaction History
+        //   Tas pag nagproceed another set of options:
+        //    - View by name 
+        //    - View by ...
+        //    - View by ...
+        // Kung ano man required
+    }
+    
+    // NOT USED
+    //Just the same things as the ones inside the main method for visual only.
+    private static void displayCustomerScreen() {
+        int userChoice;
+        Scanner input = new Scanner(System.in);
+        ArrayList <String> transactionsReceipt =new ArrayList<String>();
+        ArrayList <String> customerInformations =new ArrayList<String>(); 
+        ArrayList <String> names =new ArrayList<String>();
+        while (true) {
+            System.out.println();
+            System.out.println(Green + "++==================================================++" + Reset);
+            System.out.println(Green + "||             " + Reset + Bold + Yellow + "Welcome to Hotel De Luna" + Reset + Green + "             ||" + Reset);
+            System.out.println(Green + "||                                                  ||" + Reset);
+            System.out.println(Green + "||    " + Reset + "Would you like to Book a night or Exit?" + Reset + Green + "       ||" + Reset);
+            System.out.println(Green + "||    " + Reset + Magenta + "[1]" + Reset + Gray + "   Book a night" + Reset + Green + "                            ||" + Reset);
+            System.out.println(Green + "||    " + Reset + Magenta + "[0]" + Reset + Gray + "   Go Back" + Reset + Green + "                                 ||" + Reset);
+            System.out.println(Green + "||                                                  ||" + Reset);
+            System.out.println(Green + "++==================================================++" + Reset);
+            System.out.println(Italic + Gray + "           Please select an option (0 - 2)           " + Reset);
+            System.out.println(Green + "O----------------------------------------------------O" + Reset);
+            System.out.print("          Input Number Here: ");
+            try {
+                userChoice = input.nextInt();
+                System.out.println(Green + "O----------------------------------------------------O" + Reset);
+                switch (userChoice) {
+                    case 1:
+                        System.out.println();
+                        displayOptions(input, transactionsReceipt,  customerInformations, names); // Where everything happens
+                        break;
+                    case 2:
+                        System.out.println();
+                        input.nextLine();
+                        viewTransByName(names, customerInformations, transactionsReceipt, input);
+                        break;
+                    case 0:
+                        System.out.println();
+                        System.out.println(Invert + Bold + Red + " - - - - - - - :   EXITING PROGRAM..  : - - - - - - - " + Reset);
+                        System.out.println();
+                        System.exit(0);
+                    default:
+                        errorRangetxt();
+                        break;
+                }
+            } catch (InputMismatchException e) {
+                System.out.println(Green + "O----------------------------------------------------O" + Reset);
+                errorTypetxt();
+                input.next();
+            }
+        }
+    }
+
     private static void welcome() {
         System.out.println(Bold + "                     HOTEL DE LUNA               " + Reset);
         System.out.println("   In this Hotel, we have different types of rooms to ");
@@ -620,7 +739,6 @@ public class HotelBilly {
         idNum = 100000000 + transactionId.nextInt(900000000);
         System.out.println("Transaction Number: " + idNum);
         transNum.add(String.valueOf(idNum));
-        
         System.out.print("     Enter your Name: "); //No possible errors
         name = input.nextLine();
         names.add(name);
