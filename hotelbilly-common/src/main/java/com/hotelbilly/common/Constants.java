@@ -3,7 +3,7 @@ package com.hotelbilly.common;
 public class Constants {
     // ANSI Color Codes
     public static final String RESET     = "\033[0m";
-    // public static final String BLACK     = "\033[30m";
+    public static final String BLACK     = "\033[30m";
     public static final String RED       = "\033[31m";
     public static final String GREEN     = "\033[32m";
     public static final String YELLOW    = "\033[33m";
@@ -14,7 +14,7 @@ public class Constants {
     public static final String WHITE     = "\033[97m";
     public static final String BOLD      = "\033[1m";
     public static final String ITALIC    = "\033[3m";
-    // public static final String UNDERLINE = "\033[4m";
+    public static final String UNDERLINE = "\033[4m";
     public static final String INVERT    = "\033[7m";
     // Bounds checker for integer inputs
 

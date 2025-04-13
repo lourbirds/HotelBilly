@@ -70,7 +70,6 @@ public class HotelBillyApp {
                     case 3:
                         System.out.println();
                         input.nextLine();
-//                        viewTransByTransactionNum(transNum, names, customerInformations, transactionsReceipt, input);
                         break;
                     case 0:
                         System.out.println();
