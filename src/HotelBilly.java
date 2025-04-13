@@ -28,6 +28,8 @@ public class HotelBilly {
         Scanner input = new Scanner(System.in);
         ArrayList <String> transactionsReceipt =new ArrayList<String>();
         ArrayList <String> customerInformations =new ArrayList<String>(); 
+        ArrayList <String> roomTypes = new ArrayList<String>();
+        ArrayList <Integer> occupancy = new ArrayList<Integer>();
         ArrayList <String> names =new ArrayList<String>(); 
         ArrayList <String> transNum =new ArrayList<String>();
         // Check if there is a transaction_history file
@@ -82,10 +84,11 @@ public class HotelBilly {
             System.out.println(Green + "||    " + Reset + Magenta + "[1]" + Reset + Gray + "   Book a night" + Reset + Green + "                            ||" + Reset);
             System.out.println(Green + "||    " + Reset + Magenta + "[2]" + Reset + Gray + "   View transactions by name" + Reset + Green + "               ||" + Reset);
             System.out.println(Green + "||    " + Reset + Magenta + "[3]" + Reset + Gray + "   View transactions by transaction number" + Reset + Green + " ||" + Reset);
+            System.out.println(Green + "||    " + Reset + Magenta + "[4]" + Reset + Gray + "   View transactions by room type and occupancy" + Reset + Green + " ||" + Reset);
             System.out.println(Green + "||    " + Reset + Magenta + "[0]" + Reset + Gray + "   Exit" + Reset + Green + "                                    ||" + Reset);
             System.out.println(Green + "||                                                  ||" + Reset);
             System.out.println(Green + "++==================================================++" + Reset);
-            System.out.println(Italic + Gray + "           Please select an option (0 - 2)           " + Reset);
+            System.out.println(Italic + Gray + "           Please select an option (0 - 4)           " + Reset);
             System.out.println(Green + "O----------------------------------------------------O" + Reset);
             System.out.print("          Input Number Here: ");
 
@@ -95,7 +98,7 @@ public class HotelBilly {
                 switch (userChoice) {
                     case 1:
                         System.out.println();
-                        displayOptions(input, transactionsReceipt,  customerInformations, names, transNum); // Where everything happens
+                        displayOptions(input, transactionsReceipt,  customerInformations, names, transNum, roomTypes, occupancy); // Where everything happens
                         break;
                     case 2:
                         System.out.println();
@@ -106,6 +109,11 @@ public class HotelBilly {
                         System.out.println();
                         input.nextLine();
                         viewTransByTransactionNum(transNum, names, customerInformations, transactionsReceipt, input);
+                        break;
+                    case 4:
+                        System.out.println();
+                        input.nextLine();
+                       viewTransByRoomTypesAndOccu(roomTypes, occupancy, customerInformations, transactionsReceipt, input);
                         break;
                     case 0:
                         System.out.println();
@@ -328,7 +336,7 @@ public class HotelBilly {
     }
 
     // The 5 main stages of the program
-    private static void displayOptions(Scanner input, ArrayList <String> transactionsReceipt, ArrayList <String> customerInformations, ArrayList <String> names, ArrayList<String> transNum) {
+    private static void displayOptions(Scanner input, ArrayList <String> transactionsReceipt, ArrayList <String> customerInformations, ArrayList <String> names, ArrayList<String> transNum, ArrayList<String> roomTypes, ArrayList<Integer> occupancy) {
         ArrayList<String> RoomType = new ArrayList<>();
         ArrayList<String> RoomOcc = new ArrayList<>();
         ArrayList<Integer> GuestCount = new ArrayList<>();
@@ -340,7 +348,7 @@ public class HotelBilly {
 
         displaySelection(RoomType.getLast(), RoomOcc.getLast(), NightCount.getLast(), GuestCount.getLast()); // Fourth Stage
 
-        checkout(RoomType.getLast(), RoomOcc.getLast(), NightCount.getLast(), GuestCount.getLast(), input, transactionsReceipt,  customerInformations, names, transNum); // Fifth Stage
+        checkout(RoomType.getLast(), RoomOcc.getLast(), NightCount.getLast(), GuestCount.getLast(), input, transactionsReceipt,  customerInformations, names, transNum, roomTypes, occupancy); // Fifth Stage
     }
 
     // In: Scanner
@@ -714,12 +722,39 @@ public class HotelBilly {
                 System.out.println(Yellow + Bold + "------------------------------------------------------" + Reset);
                 
     }
+    
+     private static void viewTransByRoomTypesAndOccu(ArrayList<String> roomTypes,ArrayList<Integer> occupancy, ArrayList<String> customerInformations,
+     ArrayList<String> transactionsReceipt, Scanner input) {
+         if (roomTypes.isEmpty()){
+             System.out.println("No transancation found in records.");
+             return;
+         }
+         
+          System.out.print("Enter Room Type (Single/Double/Suite): ");
+            String sRoomType = input.nextLine();
+            System.out.print("Enter Occupancy : ");
+             int sOccupancy = input.nextInt();
+             input.nextLine();
+             System.out.println();
+             
+             //boolean found = false;
+             
+             for (int i = 0; i < roomTypes.size(); i++){
+                 if (sRoomType.equalsIgnoreCase(roomTypes.get(i)) && sOccupancy == occupancy.get(i)){
+                    // found = true;
+                    System.out.println("               Transaction #\" + (i+1) + ");
+                    System.out.println(customerInformations.get(i));
+                    System.out.println(transactionsReceipt.get(i));
+                    return;
+                 }
+           }     
+     }
 
 
     // In: Room Type, number of Nights, number of Guests, Scanner
     // Out: void (Gets the user information, and then prints it)
   
-    private static void checkout(String RoomType, String RoomOcc, int NightCount, int GuestCount, Scanner input,ArrayList <String> transactionsReceipt, ArrayList <String> customerInformations, ArrayList <String> names, ArrayList<String> transNum) {
+    private static void checkout(String RoomType, String RoomOcc, Integer NightCount, Integer GuestCount, Scanner input, ArrayList <String> transactionsReceipt, ArrayList <String> customerInformations, ArrayList <String> names, ArrayList<String> transNum, ArrayList<String> roomTypes, ArrayList<Integer> occupancy) {
         final int roomBasePrice = roomBasePriceSelect(RoomType, RoomOcc);
         String name, email, customerInfo, contactLength;
         int age;
@@ -843,4 +878,7 @@ public class HotelBilly {
         
         }
     }   
-} 
+
+    
+    }
+ 
