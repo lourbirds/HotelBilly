@@ -111,39 +111,48 @@ public class HotelBillyApp {
             input.nextLine();
             System.out.println(GREEN + "O----------------------------------------------------O" + RESET);
 
-            switch (userChoice) {
-                case 1:
-                    System.out.print("          Enter name to view: ");
-                    findString1 = input.nextLine();
-                    System.out.println(GREEN + "++==================================================++" + RESET);
-                    findByName(findString1);
-                    break;
-                case 2:
-                    System.out.print("          Enter transaction number to view: ");
-                    findIndex = input.nextInt();
-                    System.out.println(GREEN + "++==================================================++" + RESET);
-                    findByTransactionID(findIndex);
-                    break;
-                case 3:
-                    System.out.print("          Enter room type to view: ");
-                    findString1 = input.nextLine();
-                    System.out.println(GREEN + "++==================================================++" + RESET);
-                    findByRoomType(findString1);
-                    break;
-                case 4:
-                    System.out.print("          Enter room type to view: ");
-                    findString1 = input.nextLine();
-                    System.out.println(GREEN + "++==================================================++" + RESET);
-                    System.out.print("          Enter room occupancy to view: ");
-                    findString2 = input.nextLine();
-                    System.out.println(GREEN + "++==================================================++" + RESET);
-                    findByRoomTypeOcc(findString1, findString2);
-                    break;
-                case 5:
-                    findAll();
-                    break;
-                case 0:
-                    return;
+            try {
+                switch (userChoice) {
+                    case 1:
+                        System.out.print("          Enter name to view: ");
+                        findString1 = input.nextLine();
+                        System.out.println(GREEN + "++==================================================++" + RESET);
+                        findByName(findString1);
+                        break;
+                    case 2:
+                        System.out.print("          Enter transaction number to view: ");
+                        findIndex = input.nextInt();
+                        System.out.println(GREEN + "++==================================================++" + RESET);
+                        findByTransactionID(findIndex);
+                        break;
+                    case 3:
+                        System.out.print("          Enter room type to view: ");
+                        findString1 = input.nextLine();
+                        System.out.println(GREEN + "++==================================================++" + RESET);
+                        findByRoomType(findString1);
+                        break;
+                    case 4:
+                        System.out.print("          Enter room type to view: ");
+                        findString1 = input.nextLine();
+                        System.out.println(GREEN + "++==================================================++" + RESET);
+                        System.out.print("          Enter room occupancy to view: ");
+                        findString2 = input.nextLine();
+                        System.out.println(GREEN + "++==================================================++" + RESET);
+                        findByRoomTypeOcc(findString1, findString2);
+                        break;
+                    case 5:
+                        findAll();
+                        break;
+                    case 0:
+                        return;
+                    default:
+                        errorRangetxt();
+                        break;
+                }
+            } catch (InputMismatchException e) {
+                System.out.println(GREEN + "O----------------------------------------------------O" + RESET);
+                errorTypetxt();
+                input.next();
             }
         }
     }

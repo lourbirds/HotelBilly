@@ -9,10 +9,10 @@
     <version>1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
     <modules>
-        <module>hotelbilly.common</module>
-        <module>hotelbilly.file</module>
-        <module>hotelbilly.transactions</module>
-        <module>hotelbilly.main</module>
+        <module>hotelbilly-common</module>
+        <module>hotelbilly-file</module>
+        <module>hotelbilly-transactions</module>
+        <module>hotelbilly-main</module>
     </modules>
 
     <properties>
