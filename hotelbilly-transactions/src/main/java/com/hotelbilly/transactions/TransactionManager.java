@@ -6,6 +6,8 @@ import java.io.File;
 import java.util.ArrayList;
 
 public class TransactionManager {
+    // TODO: Replace with proper constructors and objects (after knowing it was allowed in Acitivity 5)
+
     private static final ArrayList<Integer> TransactionID = new ArrayList<>();
 
     private static final ArrayList<String> RoomType = new ArrayList<>();
