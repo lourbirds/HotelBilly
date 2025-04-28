@@ -8,6 +8,8 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class HotelBillyApp {
+    private static final int GUEST_NO_DISCOUNT_THRESHOLD = 3;
+
     public static void main(String[] args) {
         int userChoice;
         Scanner input = new Scanner(System.in);
@@ -419,23 +421,23 @@ public class HotelBillyApp {
     // Out: Final total price with decimals
     private static float finalCompute(String RoomType, String RoomOcc, int NightCount, int GuestCount, int roomBasePrice) {
         float total;
-        final int guestAddCharge = guestAddChargeComp(RoomType, RoomOcc, GuestCount, roomBasePrice);
-        roomBasePrice += guestAddCharge;
+        final int GUEST_ADD_CHARGE = guestAddChargeComp(RoomType, RoomOcc, GuestCount, roomBasePrice);
+        roomBasePrice += GUEST_ADD_CHARGE;
         total = roomBasePrice * NightCount;
 
-        if (NightCount > 3) {
-            total -= (float) (total * 0.15);
+        if (NightCount > GUEST_NO_DISCOUNT_THRESHOLD) {
+            total -= (total * 0.15f);
         }
 
-        total += (float) (total * 0.12);
+        total += (total * 0.12f);
         return total;
     }
 
     // In: Room Type, number of Nights, number of Guests
     // Out: void (Prints the room selection of the user)
     private static void displaySelection(String RoomType, String RoomOcc, int NightCount, int GuestCount) {
-        final int roomBasePrice = roomBasePriceSelect(RoomType, RoomOcc);
-        final float totalPrice = finalCompute(RoomType, RoomOcc ,NightCount, GuestCount, roomBasePrice);
+        final int ROOMBASEPRICE = roomBasePriceSelect(RoomType, RoomOcc);
+        final float TOTAL_PRICE = finalCompute(RoomType, RoomOcc ,NightCount, GuestCount, ROOMBASEPRICE);
         System.out.println(GREEN + "++==================================================++" + RESET);
         System.out.println(GREEN + "||                                                  ||" + RESET);
         System.out.println(GREEN + "||" + RESET + "                 " + BOLD + "Booking Summary" + RESET + "                  " + GREEN + "||" + RESET);
@@ -446,7 +448,7 @@ public class HotelBillyApp {
         System.out.printf(GREEN + "||" + RESET + "   OCCUPANCY SIZE   : %-28s" + GREEN + "||" + RESET + "%n", RoomOcc);
         System.out.printf(GREEN + "||" + RESET + "   GUESTS           : %-28d" + GREEN + "||" + RESET + "%n", GuestCount);
         System.out.printf(GREEN + "||" + RESET + "   NUMBER OF NIGHTS : %-28d" + GREEN + "||" + RESET + "%n", NightCount);
-        System.out.printf(GREEN + "||" + RESET + "   Total Bill       : %-28.2f" + GREEN + "||" + RESET + "%n", totalPrice);
+        System.out.printf(GREEN + "||" + RESET + "   Total Bill       : %-28.2f" + GREEN + "||" + RESET + "%n", TOTAL_PRICE);
         System.out.println(GREEN + "||                                                  ||" + RESET);
         System.out.println(GREEN + "++==================================================++" + RESET);
     }
@@ -461,7 +463,7 @@ public class HotelBillyApp {
 
         float total = initialPrice + guestChargeTotal;
 
-        final float discount = NightCount > 3 ? total * 0.15f : 0;
+        final float discount = NightCount > GUEST_NO_DISCOUNT_THRESHOLD ? total * 0.15f : 0;
 
         total -= discount;
 
@@ -496,7 +498,9 @@ public class HotelBillyApp {
     // In: Room Type, number of Nights, number of Guests, Scanner
     // Out: void (Gets the user information, and then prints it)
     private static void checkout(String RoomType, String RoomOcc, int NightCount, int GuestCount, Scanner input) {
-        final int roomBasePrice = roomBasePriceSelect(RoomType, RoomOcc);
+        final int MIN_AGE = 18;
+        final int MAX_AGE = 200;
+        final int ROOMBASEPRICE = roomBasePriceSelect(RoomType, RoomOcc);
         String name, email, customerInfo, contact;
         int age;
 
@@ -517,7 +521,7 @@ public class HotelBillyApp {
             try {
                 age = input.nextInt();
                 input.nextLine();
-                if (age < 18 || age > 200) {
+                if (age < MIN_AGE || age > MAX_AGE) {
                     errorAgeRestrictiontxt();
                     System.out.println();
                 } else {
@@ -558,7 +562,7 @@ public class HotelBillyApp {
                 + "||                                                  ||";
 
         System.out.println(customerInfo);
-        displayReceipt(RoomType, RoomOcc, NightCount, GuestCount, roomBasePrice);
+        displayReceipt(RoomType, RoomOcc, NightCount, GuestCount, ROOMBASEPRICE);
 
         while (true) {
             System.out.println(GREEN + "++==================================================++" + RESET);
@@ -600,9 +604,6 @@ public class HotelBillyApp {
                     System.out.println(GREEN + "||                                                  ||" + RESET);
                     System.out.println(GREEN + "++==================================================++" + RESET);
                     System.out.println(BLUE + "\n******************************************************" + RESET);
-
-                    cancelBooking();
-
                     return;
                 default:
                     errorBookingExit();
