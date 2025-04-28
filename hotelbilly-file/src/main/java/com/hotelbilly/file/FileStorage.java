@@ -8,7 +8,7 @@ import java.nio.file.Paths;
 import java.util.List;
 
 public class FileStorage {
-    final static String TRANSACTION_HISTORY_FILE_LOCATION = "./transaction_history.txt";
+    private static final String TRANSACTION_HISTORY_FILE_LOCATION = "./transaction_history.txt";
 
     public static void CheckFileExists() {
         // Check if there is a transaction_history file
