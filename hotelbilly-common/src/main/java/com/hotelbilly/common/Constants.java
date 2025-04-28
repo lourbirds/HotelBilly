@@ -77,8 +77,8 @@ public class Constants {
     }
 
     public static void errorNoTransactionFound() {
-        System.out.println(GREEN + "++==================================================++" + RESET);
-        System.out.println(GREEN + "||" + RESET + "         " + BOLD + "No Transactions found in records" + RESET + "         " + GREEN + "||" + RESET);
-        System.out.println(GREEN + "++==================================================++" + RESET);
+        System.out.println(WHITE + "++==================================================++" + RESET);
+        System.out.println(WHITE+ "||" + RED + "         " + BOLD + "No Transactions found in records" + RESET + "         " + WHITE + "||" + RESET);
+        System.out.println(WHITE + "++==================================================++" + RESET);
     }
 }
