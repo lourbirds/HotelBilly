@@ -172,11 +172,6 @@ public class TransactionManager {
         return Email;
     }
 
-    // CANCEL
-    public static void cancelBooking() {
-
-    }
-
     // FIND ALL
     public static void findAll() {
         if (TransactionID.isEmpty()) {
